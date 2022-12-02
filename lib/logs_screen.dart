@@ -1,8 +1,11 @@
 import 'package:call_history/call_log_list_row.dart';
 import 'package:call_history/filter_screen.dart';
+import 'package:call_history/model/filter_container.dart';
+import 'package:call_history/model/hive/box_names.dart';
 import 'package:call_history/provider/FilterProvider.dart';
 import 'package:call_log/call_log.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
 
 class LogsScreen extends StatefulWidget {

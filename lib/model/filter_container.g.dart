@@ -16,7 +16,7 @@ class FilterContainerAdapter extends TypeAdapter<FilterContainer> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return FilterContainer()..maxDuration = fields[0] as int;
+    return FilterContainer()..minDuration = fields[0] as int;
   }
 
   @override
@@ -24,7 +24,7 @@ class FilterContainerAdapter extends TypeAdapter<FilterContainer> {
     writer
       ..writeByte(1)
       ..writeByte(0)
-      ..write(obj.maxDuration);
+      ..write(obj.minDuration);
   }
 
   @override

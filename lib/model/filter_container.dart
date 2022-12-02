@@ -6,5 +6,5 @@ part 'filter_container.g.dart';
 
 @HiveType(typeId: HiveTypeIds.FILTER_CONTAINER, adapterName: AdapterNames.FILTER_CONTAINER_ADAPTER_NAME)
 class FilterContainer extends HiveObject {
-  @HiveField(0) int maxDuration = 0;
+  @HiveField(0) int minDuration = 0;
 }

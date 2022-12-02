@@ -1,5 +1,6 @@
-import 'package:call_history/LogsScreen.dart';
+import 'package:call_history/logs_screen.dart';
 import 'package:call_history/call_log_list_row.dart';
+import 'package:call_history/core/configure_dependencies.dart';
 import 'package:call_history/filter_screen.dart';
 import 'package:call_history/model/filter_container.dart';
 import 'package:call_history/model/hive/box_names.dart';
@@ -14,6 +15,10 @@ Future<void> main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(FilterContainerAdapter());
   await Hive.openBox<FilterContainer>(BoxNames.FILTER_CONTAINER_BOX_NAME);
+
+
+
+  configureDependencies();
 
   runApp(const MyApp());
 }
