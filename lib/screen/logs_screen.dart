@@ -1,5 +1,5 @@
 import 'package:call_history/call_log_list_row.dart';
-import 'package:call_history/filter_screen.dart';
+import 'package:call_history/screen/filter_screen.dart';
 import 'package:call_history/model/filter_container.dart';
 import 'package:call_history/model/hive/box_names.dart';
 import 'package:call_history/provider/FilterProvider.dart';
@@ -20,7 +20,6 @@ class _LogsScreenState extends State<LogsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print("BUILD method");
     return Scaffold(
       appBar: AppBar(
         title: Text("LogsScreen"),
@@ -50,11 +49,14 @@ class _LogsScreenState extends State<LogsScreen> {
                       child: SizedBox(
                         height: 600,
                         child: Consumer<FilterProvider>(
-                          builder: (context, filterProvider, _) =>
-                         ListView(
+                          builder: (context, filterProvider, _) => ListView(
                             padding: const EdgeInsets.all(8),
                             scrollDirection: Axis.vertical,
-                            children: getContent(snapshot, filterProvider.minDuration),
+                            children: getContent(
+                                snapshot,
+                                filterProvider.minDuration,
+                                filterProvider.startDate,
+                                filterProvider.endDate),
                           ),
                         ),
                       ),
@@ -95,13 +97,23 @@ class _LogsScreenState extends State<LogsScreen> {
     );
   }
 
-  getContent(AsyncSnapshot snapshot, int minDuration) {
-    print("getContent " + minDuration.toString());
+  getContent(AsyncSnapshot snapshot, int minDuration, DateTime? startDate,
+      DateTime? endDate) {
     List<CallLogEntry> list = snapshot.data.toList();
 
     final secondLIst = list
-    .where((entry) => (entry.duration! / 60) > minDuration)
-        .map((entry) {
+        .where((entry) => (entry.duration! / 60) > minDuration)
+        .where((entry) {
+      if (startDate != null) {
+        return entry.timestamp! >= startDate.millisecondsSinceEpoch;
+      }
+      return true;
+    }).where((entry) {
+      if (endDate != null) {
+        return entry.timestamp! <= endDate.millisecondsSinceEpoch;
+      }
+      return true;
+    }).map((entry) {
       return SizedBox(
         height: 100,
         child: CallLogListRow(

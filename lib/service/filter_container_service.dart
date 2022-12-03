@@ -19,6 +19,20 @@ class FilterContainerService {
     filterContainerBox.putAt(BOX_INDEX, filterContainer);
   }
 
+  setStartDate(DateTime startDate) {
+    _createIfNotExisting();
+    FilterContainer filterContainer = filterContainerBox.getAt(BOX_INDEX)!;
+    filterContainer.startDate = startDate;
+    filterContainerBox.putAt(BOX_INDEX, filterContainer);
+  }
+
+  setEndDate(DateTime endDate) {
+    _createIfNotExisting();
+    FilterContainer filterContainer = filterContainerBox.getAt(BOX_INDEX)!;
+    filterContainer.endDate = endDate;
+    filterContainerBox.putAt(BOX_INDEX, filterContainer);
+  }
+
   FilterContainer get() {
    return filterContainerBox.getAt(BOX_INDEX)!;
   }

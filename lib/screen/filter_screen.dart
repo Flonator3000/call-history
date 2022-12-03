@@ -1,6 +1,6 @@
-import 'dart:ffi';
 
 import 'package:call_history/provider/FilterProvider.dart';
+import 'package:call_history/util/date_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -52,13 +52,24 @@ class _FilterScreenState extends State<FilterScreen> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  print("onpressed");
+                  FilterProvider filterProvider = context.read<FilterProvider>();
+
                   String minDuration = _minController.value.text ?? '0';
                   if (minDuration.isEmpty) {
                     minDuration = "0";
                   }
-                  context.read<FilterProvider>().setMinDuration(
+                  filterProvider.setMinDuration(
                       minDuration != null ? int.parse(minDuration) : 0);
+
+                  if(_startDateDayController.text.isNotEmpty) {
+                    DateTime startDate = DateUtil.fromStringInputs(_startDateDayController.text, _startDateMonthController.text, _startDateYearController.text);
+                    filterProvider.setStartDate(startDate);
+                  }
+
+                  if(_endDateDayController.text.isNotEmpty) {
+                    DateTime endDate = DateUtil.fromStringInputs(_endDateDayController.text, _endDateMonthController.text, _endDateYearController.text);
+                    filterProvider.setEndDate(endDate);
+                  }
                 },
                 child: Text("Submit"),
               ),
@@ -186,6 +197,10 @@ class _FilterScreenState extends State<FilterScreen> {
         ),
       ],
     );
+  }
+
+  _submit() {
+
   }
 
 //showWarning() https://www.youtube.com/watch?v=vEmJLvL1pzQ
