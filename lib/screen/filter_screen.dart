@@ -1,4 +1,3 @@
-
 import 'package:call_history/provider/FilterProvider.dart';
 import 'package:call_history/util/date_utils.dart';
 import 'package:flutter/material.dart';
@@ -34,53 +33,64 @@ class _FilterScreenState extends State<FilterScreen> {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
         ),
-        body: Container(
-          padding: EdgeInsets.all(20),
-          child: Column(
-            children: [
-              _buildMinDuration(),
-              SizedBox(
-                height: 10,
-              ),
-              _buildStartDate(),
-              SizedBox(
-                height: 10,
-              ),
-              _buildEndDate(),
-              SizedBox(
-                height: 10,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  FilterProvider filterProvider = context.read<FilterProvider>();
-
-                  String minDuration = _minController.value.text ?? '0';
-                  if (minDuration.isEmpty) {
-                    minDuration = "0";
-                  }
-                  filterProvider.setMinDuration(
-                      minDuration != null ? int.parse(minDuration) : 0);
-
-                  if(_startDateDayController.text.isNotEmpty) {
-                    DateTime startDate = DateUtil.fromStringInputs(_startDateDayController.text, _startDateMonthController.text, _startDateYearController.text);
-                    filterProvider.setStartDate(startDate);
-                  }
-
-                  if(_endDateDayController.text.isNotEmpty) {
-                    DateTime endDate = DateUtil.fromStringInputs(_endDateDayController.text, _endDateMonthController.text, _endDateYearController.text);
-                    filterProvider.setEndDate(endDate);
-                  }
-                },
-                child: Text("Submit"),
-              ),
-            ],
+        body: Consumer<FilterProvider>(
+          builder: (context, filterProvider, _) => Container(
+            padding: EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildMinDuration(filterProvider),
+                SizedBox(
+                  height: 10,
+                ),
+                _buildStartDate(filterProvider),
+                SizedBox(
+                  height: 10,
+                ),
+                _buildEndDate(filterProvider),
+                SizedBox(
+                  height: 10,
+                ),
+                // ElevatedButton(
+                //   onPressed: () {
+                //     FilterProvider filterProvider =
+                //         context.read<FilterProvider>();
+                //
+                //     String minDuration = _minController.value.text ?? '0';
+                //     if (minDuration.isEmpty) {
+                //       minDuration = "0";
+                //     }
+                //     filterProvider.setMinDuration(
+                //         minDuration != null ? int.parse(minDuration) : 0);
+                //
+                //     if (_startDateDayController.text.isNotEmpty) {
+                //       DateTime startDate = DateUtil.fromStringInputs(
+                //           _startDateDayController.text,
+                //           _startDateMonthController.text,
+                //           _startDateYearController.text);
+                //       filterProvider.setStartDate(startDate);
+                //     }
+                //
+                //     if (_endDateDayController.text.isNotEmpty) {
+                //       DateTime endDate = DateUtil.fromStringInputs(
+                //           _endDateDayController.text,
+                //           _endDateMonthController.text,
+                //           _endDateYearController.text);
+                //       filterProvider.setEndDate(endDate);
+                //     }
+                //   },
+                //   child: Text("Submit"),
+                // ),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  _buildMinDuration() {
+  _buildMinDuration(FilterProvider filterProvider) {
+    _minController.text = filterProvider.minDuration != null ? filterProvider.minDuration.toString() : '';
     return TextField(
       controller: _minController,
       decoration: InputDecoration(
@@ -88,10 +98,16 @@ class _FilterScreenState extends State<FilterScreen> {
         labelText: 'Min duration',
       ),
       keyboardType: TextInputType.number,
+      onChanged: (text) {
+        if(text.isEmpty) {
+          filterProvider.setMinDuration(0);
+        }
+        filterProvider.setMinDuration(int.parse(text));
+      },
     );
   }
 
-  _buildStartDate() {
+  _buildStartDate(FilterProvider filterProvider) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -99,53 +115,22 @@ class _FilterScreenState extends State<FilterScreen> {
           'start date',
           style: TextStyle(color: Colors.black),
         ),
-        Row(
-          children: [
-            Expanded(
-              child: TextField(
-                controller: _startDateDayController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: "DD",
-                  counterText: '',
-                ),
-                keyboardType: TextInputType.number,
-                maxLength: 2,
-              ),
-            ),
-            SizedBox(width: 20,),
-            Expanded(
-              child: TextField(
-                controller: _startDateMonthController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: "MM",
-                  counterText: '',
-                ),
-                keyboardType: TextInputType.number,
-                maxLength: 2,
-              ),
-            ),
-            SizedBox(width: 20,),
-            Expanded(
-              child: TextField(
-                controller: _startDateYearController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: "YYYY",
-                  counterText: '',
-                ),
-                keyboardType: TextInputType.number,
-                maxLength: 4,
-              ),
-            ),
-          ],
-        ),
+        ElevatedButton(
+            onPressed: () async {
+              DateTime? newDate = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime(1900),
+                  lastDate: DateTime(2100));
+              if(newDate == null) return; // cancel pressed
+              filterProvider.setStartDate(newDate);
+            },
+            child: Text(filterProvider.startDate != null ? filterProvider.startDate!.toString() : '-'))
       ],
     );
   }
 
-  _buildEndDate() {
+  _buildEndDate(FilterProvider filterProvider) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -153,55 +138,21 @@ class _FilterScreenState extends State<FilterScreen> {
           'end date',
           style: TextStyle(color: Colors.black),
         ),
-        Row(
-          children: [
-            Expanded(
-              child: TextField(
-                controller: _endDateDayController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: "DD",
-                  counterText: '',
-                ),
-                keyboardType: TextInputType.number,
-                maxLength: 2,
-              ),
-            ),
-            SizedBox(width: 20,),
-            Expanded(
-              child: TextField(
-                controller: _endDateMonthController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: "MM",
-                  counterText: '',
-                ),
-                keyboardType: TextInputType.number,
-                maxLength: 2,
-              ),
-            ),
-            SizedBox(width: 20,),
-            Expanded(
-              child: TextField(
-                controller: _endDateYearController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: "YYYY",
-                  counterText: '',
-                ),
-                keyboardType: TextInputType.number,
-                maxLength: 4,
-              ),
-            ),
-          ],
-        ),
+        ElevatedButton(
+            onPressed: () async {
+              DateTime? newDate = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime(1900),
+                  lastDate: DateTime(2100));
+              if(newDate == null) return; // cancel pressed
+              filterProvider.setEndDate(newDate);
+            },
+            child: Text(filterProvider.endDate != null ? filterProvider.endDate!.toString() : '-'))
       ],
     );
   }
 
-  _submit() {
-
-  }
 
 //showWarning() https://www.youtube.com/watch?v=vEmJLvL1pzQ
 }

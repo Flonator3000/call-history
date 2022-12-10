@@ -34,6 +34,7 @@ class FilterContainerService {
   }
 
   FilterContainer get() {
+    _createIfNotExisting();
    return filterContainerBox.getAt(BOX_INDEX)!;
   }
 

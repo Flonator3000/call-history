@@ -16,15 +16,22 @@ class FilterContainerAdapter extends TypeAdapter<FilterContainer> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return FilterContainer()..minDuration = fields[0] as int;
+    return FilterContainer()
+      ..minDuration = fields[0] as int
+      ..startDate = fields[1] as DateTime?
+      ..endDate = fields[2] as DateTime?;
   }
 
   @override
   void write(BinaryWriter writer, FilterContainer obj) {
     writer
-      ..writeByte(1)
+      ..writeByte(3)
       ..writeByte(0)
-      ..write(obj.minDuration);
+      ..write(obj.minDuration)
+      ..writeByte(1)
+      ..write(obj.startDate)
+      ..writeByte(2)
+      ..write(obj.endDate);
   }
 
   @override
