@@ -49,18 +49,21 @@ class _LogsScreenState extends State<LogsScreen> {
                       child: SizedBox(
                         height: 600,
                         child: Consumer<FilterProvider>(
-                          builder: (context, filterProvider, _) => ListView(
-                            padding: const EdgeInsets.all(8),
-                            scrollDirection: Axis.vertical,
-                            children: getContent(
-                                snapshot,
-                                filterProvider.minDuration,
-                                filterProvider.startDate,
-                                filterProvider.endDate),
-                          ),
+                            builder: (context, filterProvider, _) {
+                              List<CallLogListRow> content = getContent(
+                                  snapshot, filterProvider.minDuration,
+                                  filterProvider.startDate,
+                                  filterProvider.endDate);
+                              return ListView.builder(
+                                  itemCount: content.length,
+                                  itemBuilder: (context, index) {
+                                    return content[index];
+                                  }
+                              );
+                            }
                         ),
                       ),
-                    ),
+                    )
                   ];
                 } else if (snapshot.hasError) {
                   children = <Widget>[
@@ -97,7 +100,8 @@ class _LogsScreenState extends State<LogsScreen> {
     );
   }
 
-  getContent(AsyncSnapshot snapshot, int minDuration, DateTime? startDate,
+  List<CallLogListRow> getContent(AsyncSnapshot snapshot, int minDuration,
+      DateTime? startDate,
       DateTime? endDate) {
     List<CallLogEntry> list = snapshot.data.toList();
 
@@ -114,11 +118,8 @@ class _LogsScreenState extends State<LogsScreen> {
       }
       return true;
     }).map((entry) {
-      return SizedBox(
-        height: 100,
-        child: CallLogListRow(
-          callLogEntry: entry,
-        ),
+      return CallLogListRow(
+        callLogEntry: entry,
       );
     }).toList();
 

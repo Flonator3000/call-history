@@ -10,31 +10,52 @@ class CallLogListRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return Column(
-        children: [
-          Container(
-            color: Colors.amber,
-            height: 50,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Container(
+      margin: EdgeInsets.only(bottom: 7.0),
+      height: 100,
+      decoration: BoxDecoration(
+          color: Color.fromRGBO(224, 224, 224, 1),
+          border: Border(
+              bottom: BorderSide(
+            width: 0.5,
+          ))),
+      child: Padding(
+        padding: EdgeInsets.all(20.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(this.callLogEntry.name != null ? this.callLogEntry.name! : "-", style: TextStyle(color: Colors.black),),
-                    Text(this.callLogEntry.formattedNumber != null ? this.callLogEntry.formattedNumber! : this.callLogEntry.number!, style: TextStyle(color: Colors.black),),
-                  ],
+                Text(
+                  this.callLogEntry.name != null
+                      ? this.callLogEntry.name!
+                      : "Unbekannt",
+                  style: TextStyle(color: Colors.black,
+                  fontWeight: FontWeight.bold),
                 ),
-                Column(
-                  children: [
-                    Text(this.callLogEntry.duration!.toString() + "s", style: TextStyle(color: Colors.black),),
-                  ],
+                SizedBox(
+                  height: 5.0,
+                ),
+                Text(
+                  this.callLogEntry.formattedNumber != null
+                      ? this.callLogEntry.formattedNumber!
+                      : this.callLogEntry.number!,
+                  style: TextStyle(color: Colors.black),
                 ),
               ],
             ),
-          ),
-        ],
+            Column(
+              children: [
+                Text(
+                  this.callLogEntry.duration!.toString() + "s",
+                  style: TextStyle(color: Colors.black),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
