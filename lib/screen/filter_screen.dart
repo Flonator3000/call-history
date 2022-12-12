@@ -93,16 +93,14 @@ class _FilterScreenState extends State<FilterScreen> {
     _minController.text = filterProvider.minDuration != null ? filterProvider.minDuration.toString() : '';
     return TextField(
       controller: _minController,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         border: OutlineInputBorder(),
         labelText: 'Min duration',
       ),
       keyboardType: TextInputType.number,
-      onChanged: (text) {
-        if(text.isEmpty) {
-          filterProvider.setMinDuration(0);
-        }
-        filterProvider.setMinDuration(int.parse(text));
+      onSubmitted: (text) {
+        int parsed = int.tryParse(text) ?? 0;
+        filterProvider.setMinDuration(parsed);
       },
     );
   }
