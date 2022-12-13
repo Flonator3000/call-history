@@ -22,6 +22,13 @@ class _FilterScreenState extends State<FilterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final AppBar appBar = AppBar();
+
+    final mediaQuery = MediaQuery.of(context);
+    var statusBarHeight = MediaQuery.of(context).viewPadding.top;
+    final maxContentHeight = mediaQuery.size.height - appBar.preferredSize.height - statusBarHeight;
+    final maxContentWidth = mediaQuery.size.width;
+
     return WillPopScope(
       onWillPop: () async {
         bool shouldPop = true;
@@ -30,59 +37,58 @@ class _FilterScreenState extends State<FilterScreen> {
         return shouldPop;
       },
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-        ),
-        body: Consumer<FilterProvider>(
-          builder: (context, filterProvider, _) => Container(
-            padding: EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildMinDuration(filterProvider),
-                SizedBox(
-                  height: 10,
-                ),
-                _buildStartDate(filterProvider),
-                SizedBox(
-                  height: 10,
-                ),
-                _buildEndDate(filterProvider),
-                SizedBox(
-                  height: 10,
-                ),
-                // ElevatedButton(
-                //   onPressed: () {
-                //     FilterProvider filterProvider =
-                //         context.read<FilterProvider>();
-                //
-                //     String minDuration = _minController.value.text ?? '0';
-                //     if (minDuration.isEmpty) {
-                //       minDuration = "0";
-                //     }
-                //     filterProvider.setMinDuration(
-                //         minDuration != null ? int.parse(minDuration) : 0);
-                //
-                //     if (_startDateDayController.text.isNotEmpty) {
-                //       DateTime startDate = DateUtil.fromStringInputs(
-                //           _startDateDayController.text,
-                //           _startDateMonthController.text,
-                //           _startDateYearController.text);
-                //       filterProvider.setStartDate(startDate);
-                //     }
-                //
-                //     if (_endDateDayController.text.isNotEmpty) {
-                //       DateTime endDate = DateUtil.fromStringInputs(
-                //           _endDateDayController.text,
-                //           _endDateMonthController.text,
-                //           _endDateYearController.text);
-                //       filterProvider.setEndDate(endDate);
-                //     }
-                //   },
-                //   child: Text("Submit"),
-                // ),
-              ],
-            ),
+        appBar: appBar,
+        body: Padding(
+          padding: EdgeInsets.only(left: maxContentWidth * 0.03, right: maxContentWidth * 0.03, top: maxContentHeight * 0.02, bottom: maxContentHeight * 0.02),
+          child: Consumer<FilterProvider>(
+            builder: (context, filterProvider, _) => Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildMinDuration(filterProvider),
+                  SizedBox(
+                    height: maxContentHeight * 0.03,
+                  ),
+                  _buildStartDate(filterProvider),
+                  SizedBox(
+                    height: maxContentHeight * 0.03,
+                  ),
+                  _buildEndDate(filterProvider),
+                  SizedBox(
+                    height: maxContentHeight * 0.03,
+                  ),
+                  // ElevatedButton(
+                  //   onPressed: () {
+                  //     FilterProvider filterProvider =
+                  //         context.read<FilterProvider>();
+                  //
+                  //     String minDuration = _minController.value.text ?? '0';
+                  //     if (minDuration.isEmpty) {
+                  //       minDuration = "0";
+                  //     }
+                  //     filterProvider.setMinDuration(
+                  //         minDuration != null ? int.parse(minDuration) : 0);
+                  //
+                  //     if (_startDateDayController.text.isNotEmpty) {
+                  //       DateTime startDate = DateUtil.fromStringInputs(
+                  //           _startDateDayController.text,
+                  //           _startDateMonthController.text,
+                  //           _startDateYearController.text);
+                  //       filterProvider.setStartDate(startDate);
+                  //     }
+                  //
+                  //     if (_endDateDayController.text.isNotEmpty) {
+                  //       DateTime endDate = DateUtil.fromStringInputs(
+                  //           _endDateDayController.text,
+                  //           _endDateMonthController.text,
+                  //           _endDateYearController.text);
+                  //       filterProvider.setEndDate(endDate);
+                  //     }
+                  //   },
+                  //   child: Text("Submit"),
+                  // ),
+                ],
+              ),
+
           ),
         ),
       ),

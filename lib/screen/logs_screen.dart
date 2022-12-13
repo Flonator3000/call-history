@@ -20,82 +20,86 @@ class _LogsScreenState extends State<LogsScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+
+    AppBar appBar = AppBar(
+      title: Text("LogsScreen"),
+      actions: [
+        IconButton(
+            onPressed: () {},
+            icon: IconButton(
+              icon: const Icon(Icons.filter_alt),
+              color: Colors.white,
+              onPressed: () {
+                Navigator.of(context).pushNamed(FilterScreen.routeName);
+              },
+            ))
+      ],
+    );
+
+    final mediaQuery = MediaQuery.of(context);
+    var statusBarHeight = MediaQuery.of(context).viewPadding.top;
+    final maxContentHeight = mediaQuery.size.height - appBar.preferredSize.height - statusBarHeight;
+    final maxContentWidth = mediaQuery.size.width;
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text("LogsScreen"),
-        actions: [
-          IconButton(
-              onPressed: () {},
-              icon: IconButton(
-                icon: const Icon(Icons.filter_alt),
-                color: Colors.white,
-                onPressed: () {
-                  Navigator.of(context).pushNamed(FilterScreen.routeName);
-                },
-              ))
-        ],
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          FutureBuilder(
-              future: entries,
-              builder: (BuildContext context, AsyncSnapshot snapshot) {
-                List<Widget> children;
-                if (snapshot.hasData) {
-                  children = <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(top: 0),
-                      child: SizedBox(
-                        height: 600,
-                        child: Consumer<FilterProvider>(
-                            builder: (context, filterProvider, _) {
-                              List<CallLogListRow> content = getContent(
-                                  snapshot, filterProvider.minDuration,
-                                  filterProvider.startDate,
-                                  filterProvider.endDate);
-                              return ListView.builder(
-                                  itemCount: content.length,
-                                  itemBuilder: (context, index) {
-                                    return content[index];
+      appBar: appBar,
+      body: Padding(
+        padding: EdgeInsets.only(left: maxContentWidth * 0.03, right: maxContentWidth * 0.03, top: maxContentHeight * 0.02, bottom: maxContentHeight * 0.02),
+        child: SizedBox(
+          height: maxContentHeight * 0.96,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Expanded(
+                child: FutureBuilder(
+                    future: entries,
+                    builder: (BuildContext context, AsyncSnapshot snapshot) {
+                      List<Widget> children;
+                      if (snapshot.hasData) {
+                        children = <Widget>[
+                              Consumer<FilterProvider>(
+                                  builder: (context, filterProvider, _) {
+                                    List<CallLogListRow> content = getContent(
+                                        snapshot, filterProvider.minDuration,
+                                        filterProvider.startDate,
+                                        filterProvider.endDate);
+                                    return Expanded(
+                                      child: ListView.builder(
+                                          itemCount: content.length,
+                                          itemBuilder: (context, index) {
+                                            return content[index];
+                                          }
+                                      ),
+                                    );
                                   }
-                              );
-                            }
-                        ),
-                      ),
-                    )
-                  ];
-                } else if (snapshot.hasError) {
-                  children = <Widget>[
-                    const Icon(
-                      Icons.error_outline,
-                      color: Colors.red,
-                      size: 60,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 16),
-                      child: Text('Error: ${snapshot.error}'),
-                    ),
-                  ];
-                } else {
-                  children = const <Widget>[
-                    SizedBox(
-                      width: 60,
-                      height: 60,
-                      child: CircularProgressIndicator(),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 16),
-                      child: Text('Awaiting result...'),
-                    ),
-                  ];
-                }
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: children,
-                );
-              })
-        ],
+                            ),
+                        ];
+                      } else if (snapshot.hasError) {
+                        children = <Widget>[
+                          const Icon(
+                            Icons.error_outline,
+                            color: Colors.red,
+                            size: 60,
+                          ),
+                          Text('Error: ${snapshot.error}'),
+                        ];
+                      } else {
+                        children = const <Widget>[
+                          CircularProgressIndicator(),
+                          Text('Awaiting result...'),
+                        ];
+                      }
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: children,
+                      );
+                    }),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
