@@ -58,6 +58,7 @@ class _FilterScreenState extends State<FilterScreen> {
 
   _buildMinDuration(FilterProvider filterProvider) {
     _minController.text = filterProvider.minDuration.toString();
+    _minController.selection = TextSelection.fromPosition(TextPosition(offset: _minController.text.length));
     return TextField(
       controller: _minController,
       decoration: const InputDecoration(
