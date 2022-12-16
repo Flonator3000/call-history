@@ -1,4 +1,5 @@
-import 'package:call_history/service/filter_container_service.dart';
+import 'package:call_history/core/configure_dependencies.dart';
+import 'package:call_history/service/filter_container_persistence_service.dart';
 import 'package:flutter/material.dart';
 
 class FilterProvider with ChangeNotifier {
@@ -6,8 +7,7 @@ class FilterProvider with ChangeNotifier {
   DateTime? startDate;
   DateTime? endDate;
 
-  final FilterContainerService filterContainerService =
-      FilterContainerService();
+  final FilterContainerPersistenceService filterContainerService = getIt<FilterContainerPersistenceService>();
 
   FilterProvider() {
     minDuration = filterContainerService.get().minDuration;

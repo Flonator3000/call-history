@@ -18,7 +18,7 @@ class _FilterScreenState extends State<FilterScreen> {
     final AppBar appBar = AppBar();
 
     final mediaQuery = MediaQuery.of(context);
-    var statusBarHeight = MediaQuery.of(context).viewPadding.top;
+    var statusBarHeight = mediaQuery.viewPadding.top;
     final maxContentHeight = mediaQuery.size.height - appBar.preferredSize.height - statusBarHeight;
     final maxContentWidth = mediaQuery.size.width;
 
