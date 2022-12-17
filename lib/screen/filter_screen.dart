@@ -66,23 +66,34 @@ class _FilterScreenState extends State<FilterScreen> {
           'Min duration',
           style: TextStyle(color: Colors.black),
         ),
-        SizedBox(
-          width: maxContentWidth * 0.17,
-          height: maxContentHeight * 0.08,
-          child: TextField(
-            controller: _minController,
-            style: const TextStyle(fontSize: 20.0),
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
+        Row(
+          children: [
+            SizedBox(
+              width: maxContentWidth * 0.17,
+              height: maxContentHeight * 0.08,
+              child: TextField(
+                controller: _minController,
+                style: const TextStyle(fontSize: 20.0),
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
+                keyboardType: TextInputType.number,
+                textAlign: TextAlign.end,
+                textAlignVertical: TextAlignVertical.top,
+                onSubmitted: (text) {
+                  int parsed = int.tryParse(text) ?? 0;
+                  filterProvider.setMinDuration(parsed);
+                },
+              ),
             ),
-            keyboardType: TextInputType.number,
-            textAlign: TextAlign.end,
-            textAlignVertical: TextAlignVertical.top,
-            onSubmitted: (text) {
-              int parsed = int.tryParse(text) ?? 0;
-              filterProvider.setMinDuration(parsed);
-            },
-          ),
+            if (filterProvider.minDuration != 0)
+              IconButton(
+                onPressed: () {
+                  filterProvider.setMinDuration(0);
+                },
+                icon: const Icon(Icons.remove_circle_outline_outlined),
+              ),
+          ],
         ),
       ],
     );
