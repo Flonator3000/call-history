@@ -36,7 +36,7 @@ class _FilterScreenState extends State<FilterScreen> {
             builder: (context, filterProvider, _) => Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildMinDuration(filterProvider),
+                _buildMinDuration(filterProvider, maxContentWidth, maxContentHeight),
                 SizedBox(
                   height: maxContentHeight * 0.03,
                 ),
@@ -56,20 +56,35 @@ class _FilterScreenState extends State<FilterScreen> {
     );
   }
 
-  _buildMinDuration(FilterProvider filterProvider) {
+  _buildMinDuration(FilterProvider filterProvider, double maxContentWidth, double maxContentHeight) {
     _minController.text = filterProvider.minDuration.toString();
-    _minController.selection = TextSelection.fromPosition(TextPosition(offset: _minController.text.length));
-    return TextField(
-      controller: _minController,
-      decoration: const InputDecoration(
-        border: OutlineInputBorder(),
-        labelText: 'Min duration',
-      ),
-      keyboardType: TextInputType.number,
-      onSubmitted: (text) {
-        int parsed = int.tryParse(text) ?? 0;
-        filterProvider.setMinDuration(parsed);
-      },
+    _minController.selection = TextSelection(baseOffset: 0, extentOffset: _minController.value.text.length);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'Min duration',
+          style: TextStyle(color: Colors.black),
+        ),
+        SizedBox(
+          width: maxContentWidth * 0.17,
+          height: maxContentHeight * 0.08,
+          child: TextField(
+            controller: _minController,
+            style: const TextStyle(fontSize: 20.0),
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+            ),
+            keyboardType: TextInputType.number,
+            textAlign: TextAlign.end,
+            textAlignVertical: TextAlignVertical.top,
+            onSubmitted: (text) {
+              int parsed = int.tryParse(text) ?? 0;
+              filterProvider.setMinDuration(parsed);
+            },
+          ),
+        ),
+      ],
     );
   }
 
