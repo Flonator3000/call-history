@@ -1,6 +1,7 @@
 import 'package:call_history/widget/media_query_util.dart';
 import 'package:call_log/call_log.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class CallLogListRow extends StatelessWidget {
   final CallLogEntry callLogEntry;
@@ -41,6 +42,17 @@ class CallLogListRow extends StatelessWidget {
                 Text(
                   callLogEntry.formattedNumber != null ? callLogEntry.formattedNumber! : callLogEntry.number!,
                   style: const TextStyle(color: Colors.black),
+                ),
+              ],
+            ),
+            Column(
+              children: [
+                Text(
+                  callLogEntry.timestamp != null ? DateFormat('dd-MM-yyyy').format(DateTime.fromMicrosecondsSinceEpoch(callLogEntry.timestamp!)) : '',
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontStyle: FontStyle.italic,
+                  ),
                 ),
               ],
             ),

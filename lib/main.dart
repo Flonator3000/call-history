@@ -10,6 +10,7 @@ import 'package:call_history/widget/media_query_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -19,6 +20,8 @@ Future<void> main() async {
   await Hive.openBox<FilterContainer>(BoxNames.FILTER_CONTAINER_BOX_NAME);
 
   configureDependencies();
+
+  Intl.defaultLocale = "en";
 
   runApp(const MyApp());
 }
