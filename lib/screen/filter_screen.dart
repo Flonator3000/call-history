@@ -2,6 +2,7 @@ import 'package:call_history/provider/FilterProvider.dart';
 import 'package:call_history/widget/media_query_util.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FilterScreen extends StatefulWidget {
   const FilterScreen({Key? key}) : super(key: key);
@@ -16,6 +17,7 @@ class _FilterScreenState extends State<FilterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     final MediaQueryUtil mediaQueryUtil = MediaQueryUtil.of(context);
 
     return WillPopScope(
@@ -32,15 +34,15 @@ class _FilterScreenState extends State<FilterScreen> {
             builder: (context, filterProvider, _) => Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildMinDuration(filterProvider, mediaQueryUtil),
+                _buildMinDuration(filterProvider, mediaQueryUtil, appLocalizations),
                 SizedBox(
                   height: mediaQueryUtil.height(0.03),
                 ),
-                _buildStartDateRow(filterProvider),
+                _buildStartDateRow(filterProvider, appLocalizations),
                 SizedBox(
                   height: mediaQueryUtil.height(0.03),
                 ),
-                _buildEndDateRow(filterProvider),
+                _buildEndDateRow(filterProvider, appLocalizations),
                 SizedBox(
                   height: mediaQueryUtil.height(0.03),
                 ),
@@ -52,15 +54,15 @@ class _FilterScreenState extends State<FilterScreen> {
     );
   }
 
-  _buildMinDuration(FilterProvider filterProvider, MediaQueryUtil mediaQueryUtil) {
+  _buildMinDuration(FilterProvider filterProvider, MediaQueryUtil mediaQueryUtil, AppLocalizations appLocalizations) {
     _minController.text = filterProvider.minDuration.toString();
     _minController.selection = TextSelection(baseOffset: 0, extentOffset: _minController.value.text.length);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Min duration',
-          style: TextStyle(color: Colors.black),
+        Text(
+          appLocalizations.minDurationLabelText,
+          style: const TextStyle(color: Colors.black),
         ),
         Row(
           children: [
@@ -95,13 +97,13 @@ class _FilterScreenState extends State<FilterScreen> {
     );
   }
 
-  _buildStartDateRow(FilterProvider filterProvider) {
+  _buildStartDateRow(FilterProvider filterProvider, AppLocalizations appLocalizations) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Start date',
-          style: TextStyle(color: Colors.black),
+        Text(
+          appLocalizations.startDateLabelText,
+          style: const TextStyle(color: Colors.black),
         ),
         Row(
           children: [
@@ -129,13 +131,13 @@ class _FilterScreenState extends State<FilterScreen> {
     );
   }
 
-  _buildEndDateRow(FilterProvider filterProvider) {
+  _buildEndDateRow(FilterProvider filterProvider, AppLocalizations appLocalizations) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'End date',
-          style: TextStyle(color: Colors.black),
+        Text(
+          appLocalizations.endDateLabelText,
+          style: const TextStyle(color: Colors.black),
         ),
         Row(
           children: [

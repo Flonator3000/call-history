@@ -1,0 +1,14 @@
+{
+    "minDurationLabelText": "Min duration",
+    "@minDurationLabelText":{
+        "description": "Min duration"
+    },
+    "startDateLabelText": "Start date",
+    "@startDateLabelText":{
+        "description": "Start date"
+    },
+     "endDateLabelText": "End date",
+     "@endDateLabelText":{
+         "description": "End date"
+     }
+}
