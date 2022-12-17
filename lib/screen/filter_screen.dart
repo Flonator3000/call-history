@@ -40,11 +40,11 @@ class _FilterScreenState extends State<FilterScreen> {
                 SizedBox(
                   height: maxContentHeight * 0.03,
                 ),
-                _buildStartDate(filterProvider),
+                _buildStartDateRow(filterProvider),
                 SizedBox(
                   height: maxContentHeight * 0.03,
                 ),
-                _buildEndDate(filterProvider),
+                _buildEndDateRow(filterProvider),
                 SizedBox(
                   height: maxContentHeight * 0.03,
                 ),
@@ -73,47 +73,70 @@ class _FilterScreenState extends State<FilterScreen> {
     );
   }
 
-  _buildStartDate(FilterProvider filterProvider) {
+  _buildStartDateRow(FilterProvider filterProvider) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
-          'start date',
+          'Start date',
           style: TextStyle(color: Colors.black),
         ),
-        ElevatedButton(
-            onPressed: () async {
-              DateTime? newDate = await showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime(1900), lastDate: DateTime(2100));
-              if (newDate == null) {
-                // cancel pressed
-                return;
-              }
-              filterProvider.setStartDate(newDate);
-            },
-            child: Text(filterProvider.startDate != null ? filterProvider.startDate!.toString() : '-'))
+        Row(
+          children: [
+            ElevatedButton(
+              onPressed: () async {
+                DateTime? newDate = await showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime(1900), lastDate: DateTime(2100));
+                if (newDate == null) {
+                  // cancel pressed
+                  return;
+                }
+                filterProvider.setStartDate(newDate);
+              },
+              child: Text(filterProvider.startDate != null ? filterProvider.startDate!.toString() : '-'),
+            ),
+            if (filterProvider.startDate != null)
+              IconButton(
+                onPressed: () {
+                  filterProvider.setStartDate(null);
+                },
+                icon: const Icon(Icons.remove_circle_outline_outlined),
+              ),
+          ],
+        ),
       ],
     );
   }
 
-  _buildEndDate(FilterProvider filterProvider) {
+  _buildEndDateRow(FilterProvider filterProvider) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
-          'end date',
+          'End date',
           style: TextStyle(color: Colors.black),
         ),
-        ElevatedButton(
-          onPressed: () async {
-            DateTime? newDate = await showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime(1900), lastDate: DateTime(2100));
-            if (newDate == null) {
-              // cancel pressed
-              return;
-            }
-            filterProvider.setEndDate(newDate);
-          },
-          child: Text(filterProvider.endDate != null ? filterProvider.endDate!.toString() : '-'),
-        )
+        Row(
+          children: [
+            ElevatedButton(
+              onPressed: () async {
+                DateTime? newDate = await showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime(1900), lastDate: DateTime(2100));
+                if (newDate == null) {
+                  // cancel pressed
+                  return;
+                }
+                filterProvider.setEndDate(newDate);
+              },
+              child: Text(filterProvider.endDate != null ? filterProvider.endDate!.toString() : '-'),
+            ),
+            if (filterProvider.endDate != null)
+              IconButton(
+                onPressed: () {
+                  filterProvider.setEndDate(null);
+                },
+                icon: const Icon(Icons.remove_circle_outline_outlined),
+              ),
+          ],
+        ),
       ],
     );
   }

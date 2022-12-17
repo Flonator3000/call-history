@@ -18,14 +18,14 @@ class FilterContainerPersistenceService {
     filterContainerBox.putAt(BOX_INDEX, filterContainer);
   }
 
-  setStartDate(DateTime startDate) {
+  setStartDate(DateTime? startDate) {
     _createIfNotExisting();
     FilterContainer filterContainer = filterContainerBox.getAt(BOX_INDEX)!;
     filterContainer.startDate = startDate;
     filterContainerBox.putAt(BOX_INDEX, filterContainer);
   }
 
-  setEndDate(DateTime endDate) {
+  setEndDate(DateTime? endDate) {
     _createIfNotExisting();
     FilterContainer filterContainer = filterContainerBox.getAt(BOX_INDEX)!;
     filterContainer.endDate = endDate;

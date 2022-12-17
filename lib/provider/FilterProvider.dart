@@ -21,13 +21,13 @@ class FilterProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  setStartDate(DateTime startDate) {
+  setStartDate(DateTime? startDate) {
     this.startDate = startDate;
     filterContainerService.setStartDate(startDate);
     notifyListeners();
   }
 
-  setEndDate(DateTime endDate) {
+  setEndDate(DateTime? endDate) {
     this.endDate = endDate;
     filterContainerService.setEndDate(endDate);
     notifyListeners();
