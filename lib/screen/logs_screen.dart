@@ -5,6 +5,7 @@ import 'package:call_history/widget/media_query_util.dart';
 import 'package:call_log/call_log.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LogsScreen extends StatefulWidget {
   const LogsScreen({Key? key}) : super(key: key);
@@ -17,9 +18,10 @@ class _LogsScreenState extends State<LogsScreen> {
   @override
   Widget build(BuildContext context) {
     final MediaQueryUtil mediaQueryUtil = MediaQueryUtil.of(context);
+    final AppLocalizations appLocalizations = AppLocalizations.of(context)!;
 
     AppBar appBar = AppBar(
-      title: const Text("LogsScreen"),
+      title: Text(appLocalizations.logScreenName),
       actions: [
         IconButton(
           icon: const Icon(Icons.filter_alt),

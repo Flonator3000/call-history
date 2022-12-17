@@ -27,7 +27,9 @@ class _FilterScreenState extends State<FilterScreen> {
         return shouldPop;
       },
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: Text(appLocalizations.filterScreenName),
+        ),
         body: Padding(
           padding: EdgeInsets.only(left: mediaQueryUtil.width(0.03), right: mediaQueryUtil.width(0.03), top: mediaQueryUtil.height(0.02), bottom: mediaQueryUtil.height(0.02)),
           child: Consumer<FilterProvider>(

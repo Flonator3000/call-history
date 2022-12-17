@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
       builder: (context, provider, _) =>
           MediaQueryUtil(
             child: MaterialApp(
-              title: 'Flutter Demo',
+              title: 'Call history',
               theme: ThemeData(
                 primarySwatch: Colors.blue,
               ),

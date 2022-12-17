@@ -10,5 +10,17 @@
      "endDateLabelText": "End date",
      "@endDateLabelText":{
          "description": "End date"
+     },
+    "unknownCallerName": "Unknown",
+    "@unknownCallerName":{
+       "description": "Unknown"
+    },
+    "logScreenName": "Call Logs",
+    "@logScreenName":{
+       "description": "Call Logs"
+    },
+     "filterScreenName": "Filters",
+     "@filterScreenName":{
+        "description": "Filter"
      }
 }
