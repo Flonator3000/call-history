@@ -1,4 +1,5 @@
 import 'package:call_history/provider/FilterProvider.dart';
+import 'package:call_history/widget/media_query_util.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,12 +16,7 @@ class _FilterScreenState extends State<FilterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final AppBar appBar = AppBar();
-
-    final mediaQuery = MediaQuery.of(context);
-    var statusBarHeight = mediaQuery.viewPadding.top;
-    final maxContentHeight = mediaQuery.size.height - appBar.preferredSize.height - statusBarHeight;
-    final maxContentWidth = mediaQuery.size.width;
+    final MediaQueryUtil mediaQueryUtil = MediaQueryUtil.of(context);
 
     return WillPopScope(
       onWillPop: () async {
@@ -29,24 +25,24 @@ class _FilterScreenState extends State<FilterScreen> {
         return shouldPop;
       },
       child: Scaffold(
-        appBar: appBar,
+        appBar: AppBar(),
         body: Padding(
-          padding: EdgeInsets.only(left: maxContentWidth * 0.03, right: maxContentWidth * 0.03, top: maxContentHeight * 0.02, bottom: maxContentHeight * 0.02),
+          padding: EdgeInsets.only(left: mediaQueryUtil.width(0.03), right: mediaQueryUtil.width(0.03), top: mediaQueryUtil.height(0.02), bottom: mediaQueryUtil.height(0.02)),
           child: Consumer<FilterProvider>(
             builder: (context, filterProvider, _) => Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildMinDuration(filterProvider, maxContentWidth, maxContentHeight),
+                _buildMinDuration(filterProvider, mediaQueryUtil),
                 SizedBox(
-                  height: maxContentHeight * 0.03,
+                  height: mediaQueryUtil.height(0.03),
                 ),
                 _buildStartDateRow(filterProvider),
                 SizedBox(
-                  height: maxContentHeight * 0.03,
+                  height: mediaQueryUtil.height(0.03),
                 ),
                 _buildEndDateRow(filterProvider),
                 SizedBox(
-                  height: maxContentHeight * 0.03,
+                  height: mediaQueryUtil.height(0.03),
                 ),
               ],
             ),
@@ -56,7 +52,7 @@ class _FilterScreenState extends State<FilterScreen> {
     );
   }
 
-  _buildMinDuration(FilterProvider filterProvider, double maxContentWidth, double maxContentHeight) {
+  _buildMinDuration(FilterProvider filterProvider, MediaQueryUtil mediaQueryUtil) {
     _minController.text = filterProvider.minDuration.toString();
     _minController.selection = TextSelection(baseOffset: 0, extentOffset: _minController.value.text.length);
     return Column(
@@ -69,8 +65,8 @@ class _FilterScreenState extends State<FilterScreen> {
         Row(
           children: [
             SizedBox(
-              width: maxContentWidth * 0.17,
-              height: maxContentHeight * 0.08,
+              width: mediaQueryUtil.width(0.17),
+              height: mediaQueryUtil.height(0.08),
               child: TextField(
                 controller: _minController,
                 style: const TextStyle(fontSize: 20.0),

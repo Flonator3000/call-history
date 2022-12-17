@@ -1,6 +1,7 @@
 import 'package:call_history/widget/call_log_list_row.dart';
 import 'package:call_history/screen/filter_screen.dart';
 import 'package:call_history/provider/FilterProvider.dart';
+import 'package:call_history/widget/media_query_util.dart';
 import 'package:call_log/call_log.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,6 +16,8 @@ class LogsScreen extends StatefulWidget {
 class _LogsScreenState extends State<LogsScreen> {
   @override
   Widget build(BuildContext context) {
+    final MediaQueryUtil mediaQueryUtil = MediaQueryUtil.of(context);
+
     AppBar appBar = AppBar(
       title: const Text("LogsScreen"),
       actions: [
@@ -28,22 +31,17 @@ class _LogsScreenState extends State<LogsScreen> {
       ],
     );
 
-    final mediaQuery = MediaQuery.of(context);
-    var statusBarHeight = MediaQuery.of(context).viewPadding.top;
-    final maxContentHeight = mediaQuery.size.height - appBar.preferredSize.height - statusBarHeight;
-    final maxContentWidth = mediaQuery.size.width;
-
     return Scaffold(
       appBar: appBar,
       body: Padding(
         padding: EdgeInsets.only(
-          left: maxContentWidth * 0.03,
-          right: maxContentWidth * 0.03,
-          top: maxContentHeight * 0.02,
-          bottom: maxContentHeight * 0.02,
+          left: mediaQueryUtil.width(0.03),
+          right: mediaQueryUtil.width(0.03),
+          top: mediaQueryUtil.height(0.02),
+          bottom: mediaQueryUtil.height(0.02),
         ),
         child: SizedBox(
-          height: maxContentHeight * 0.96,
+          height: mediaQueryUtil.height(0.96),
           child: FutureBuilder(
             future: CallLog.get(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -51,10 +49,10 @@ class _LogsScreenState extends State<LogsScreen> {
                 return Consumer<FilterProvider>(builder: (context, filterProvider, _) {
                   List<CallLogListRow> callLogListRows = getCallLogListRows(snapshot, filterProvider);
                   return ListView.builder(
-                        itemCount: callLogListRows.length,
-                        itemBuilder: (context, index) {
-                          return callLogListRows[index];
-                        },
+                    itemCount: callLogListRows.length,
+                    itemBuilder: (context, index) {
+                      return callLogListRows[index];
+                    },
                   );
                 });
               } else if (snapshot.hasError) {
