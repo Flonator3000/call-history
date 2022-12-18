@@ -119,7 +119,7 @@ class _FilterScreenState extends State<FilterScreen> {
                 }
                 filterProvider.setStartDate(newDate);
               },
-              child: Text(filterProvider.startDate != null ? filterProvider.startDate!.toString() : '-'),
+              child: Text(filterProvider.startDate != null ? DateFormat('dd.MM.yyyy').format(filterProvider.startDate!) : '-'),
             ),
             if (filterProvider.startDate != null)
               IconButton(
@@ -155,7 +155,7 @@ class _FilterScreenState extends State<FilterScreen> {
                 }
                 filterProvider.setEndDate(newDate);
               },
-              child: Text(filterProvider.endDate != null ? filterProvider.endDate!.toString() : '-'),
+              child: Text(filterProvider.endDate != null ? DateFormat('dd.MM.yyyy').format(filterProvider.endDate!) : '-'),
             ),
             if (filterProvider.endDate != null)
               IconButton(
