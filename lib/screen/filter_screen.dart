@@ -1,6 +1,7 @@
 import 'package:call_history/provider/FilterProvider.dart';
 import 'package:call_history/widget/media_query_util.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -34,20 +35,16 @@ class _FilterScreenState extends State<FilterScreen> {
           padding: EdgeInsets.only(left: mediaQueryUtil.width(0.03), right: mediaQueryUtil.width(0.03), top: mediaQueryUtil.height(0.02), bottom: mediaQueryUtil.height(0.02)),
           child: Consumer<FilterProvider>(
             builder: (context, filterProvider, _) => Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _buildMinDuration(filterProvider, mediaQueryUtil, appLocalizations),
                 SizedBox(
-                  height: mediaQueryUtil.height(0.03),
+                  height: mediaQueryUtil.height(0.07),
                 ),
-                _buildStartDateRow(filterProvider, appLocalizations),
+                _buildStartDateRow(filterProvider, mediaQueryUtil, appLocalizations),
                 SizedBox(
-                  height: mediaQueryUtil.height(0.03),
+                  height: mediaQueryUtil.height(0.07),
                 ),
-                _buildEndDateRow(filterProvider, appLocalizations),
-                SizedBox(
-                  height: mediaQueryUtil.height(0.03),
-                ),
+                _buildEndDateRow(filterProvider, mediaQueryUtil, appLocalizations),
               ],
             ),
           ),
@@ -59,12 +56,14 @@ class _FilterScreenState extends State<FilterScreen> {
   _buildMinDuration(FilterProvider filterProvider, MediaQueryUtil mediaQueryUtil, AppLocalizations appLocalizations) {
     _minController.text = filterProvider.minDuration.toString();
     _minController.selection = TextSelection(baseOffset: 0, extentOffset: _minController.value.text.length);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Row(
       children: [
-        Text(
-          appLocalizations.minDurationLabelText,
-          style: const TextStyle(color: Colors.black),
+        SizedBox(
+          width: mediaQueryUtil.width(0.4),
+          child: Text(
+            appLocalizations.minDurationInfoText,
+            style: const TextStyle(color: Colors.black),
+          ),
         ),
         Row(
           children: [
@@ -99,13 +98,15 @@ class _FilterScreenState extends State<FilterScreen> {
     );
   }
 
-  _buildStartDateRow(FilterProvider filterProvider, AppLocalizations appLocalizations) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+  _buildStartDateRow(FilterProvider filterProvider, MediaQueryUtil mediaQueryUtil, AppLocalizations appLocalizations) {
+    return Row(
       children: [
-        Text(
-          appLocalizations.startDateLabelText,
-          style: const TextStyle(color: Colors.black),
+        SizedBox(
+          width: mediaQueryUtil.width(0.4),
+          child: Text(
+            appLocalizations.startDateInfoText,
+            style: const TextStyle(color: Colors.black),
+          ),
         ),
         Row(
           children: [
@@ -133,13 +134,15 @@ class _FilterScreenState extends State<FilterScreen> {
     );
   }
 
-  _buildEndDateRow(FilterProvider filterProvider, AppLocalizations appLocalizations) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+  _buildEndDateRow(FilterProvider filterProvider, MediaQueryUtil mediaQueryUtil, AppLocalizations appLocalizations) {
+    return Row(
       children: [
-        Text(
-          appLocalizations.endDateLabelText,
-          style: const TextStyle(color: Colors.black),
+        SizedBox(
+          width: mediaQueryUtil.width(0.4),
+          child: Text(
+            appLocalizations.endDateInfoText,
+            style: const TextStyle(color: Colors.black),
+          ),
         ),
         Row(
           children: [
@@ -162,7 +165,7 @@ class _FilterScreenState extends State<FilterScreen> {
                 icon: const Icon(Icons.remove_circle_outline_outlined),
               ),
           ],
-        ),
+        )
       ],
     );
   }

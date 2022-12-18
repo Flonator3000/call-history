@@ -1,15 +1,15 @@
 {
-    "minDurationLabelText": "Min duration",
-    "@minDurationLabelText":{
-        "description": "Min duration"
+    "minDurationInfoText": "Calls took so many minutes:",
+    "@minDurationInfoText":{
+        "description": "Calls took so many minutes:"
     },
-    "startDateLabelText": "Start date",
-    "@startDateLabelText":{
-        "description": "Start date"
+    "startDateInfoText": "Calls have taken place after or on this date:",
+    "@startDateInfoText":{
+        "description": "Calls have taken place after or on this date:"
     },
-     "endDateLabelText": "End date",
-     "@endDateLabelText":{
-         "description": "End date"
+     "endDateInfoText": "Calls have taken place before or on this date:",
+     "@endDateInfoText":{
+         "description": "Calls have taken place before or on this date:"
      },
     "unknownCallerName": "Unknown",
     "@unknownCallerName":{
