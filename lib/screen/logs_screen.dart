@@ -1,3 +1,4 @@
+import 'package:call_history/core/constant/menu_sections.dart';
 import 'package:call_history/widget/call_log_list_row.dart';
 import 'package:call_history/screen/filter_screen.dart';
 import 'package:call_history/provider/FilterProvider.dart';
@@ -29,6 +30,10 @@ class _LogsScreenState extends State<LogsScreen> {
           onPressed: () {
             Navigator.of(context).pushNamed(FilterScreen.routeName);
           },
+        ),
+        PopupMenuButton<MenuSections>(
+          itemBuilder: (context) => [..._buildMenuSection(appLocalizations)],
+          onSelected: (menuSection) => _onMenuSectionSelected(context, menuSection),
         ),
       ],
     );
@@ -87,5 +92,28 @@ class _LogsScreenState extends State<LogsScreen> {
         callLogEntry: entry,
       );
     }).toList();
+  }
+
+  List<PopupMenuItem<MenuSections>> _buildMenuSection(AppLocalizations appLocalizations) {
+    return [
+      PopupMenuItem(
+        value: MenuSections.LICENSES,
+        child: Row(
+          children: [
+            const Icon(Icons.aod_outlined, color: Colors.black, size: 20),
+            const SizedBox(width: 10),
+            Text(appLocalizations.menuSectionTextLicenses),
+          ],
+        ),
+      ),
+    ];
+  }
+
+  _onMenuSectionSelected(BuildContext context, MenuSections menuSection) {
+    switch (menuSection) {
+      case MenuSections.LICENSES:
+        showLicensePage(context: context); // TODO also set app name and icon https://www.youtube.com/watch?v=9lrLwIHI6IE
+        break;
+    }
   }
 }
