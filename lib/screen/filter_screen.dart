@@ -37,12 +37,16 @@ class _FilterScreenState extends State<FilterScreen> {
             builder: (context, filterProvider, _) => Column(
               children: [
                 _buildMinDuration(filterProvider, mediaQueryUtil, appLocalizations),
-                SizedBox(
+                Divider(
                   height: mediaQueryUtil.height(0.07),
+                  thickness: 0.7,
+                  color: Colors.grey,
                 ),
                 _buildStartDateRow(filterProvider, mediaQueryUtil, appLocalizations),
-                SizedBox(
+                Divider(
                   height: mediaQueryUtil.height(0.07),
+                  thickness: 0.7,
+                  color: Colors.grey,
                 ),
                 _buildEndDateRow(filterProvider, mediaQueryUtil, appLocalizations),
               ],
