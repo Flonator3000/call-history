@@ -1,6 +1,7 @@
 import 'package:call_history/provider/FilterProvider.dart';
 import 'package:call_history/widget/media_query_util.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -121,6 +122,15 @@ class _FilterScreenState extends State<FilterScreen> {
                   // cancel pressed
                   return;
                 }
+                if (filterProvider.endDate != null && newDate.isAfter(filterProvider.endDate!)) {
+                  Fluttertoast.showToast(
+                    msg: appLocalizations.startDateAfterEndDateError,
+                    fontSize: 16,
+                    toastLength: Toast.LENGTH_LONG,
+                  );
+                  filterProvider.setStartDate(null);
+                  return;
+                }
                 filterProvider.setStartDate(newDate);
               },
               child: Text(filterProvider.startDate != null ? DateFormat('dd.MM.yyyy').format(filterProvider.startDate!) : '-'),
@@ -157,6 +167,15 @@ class _FilterScreenState extends State<FilterScreen> {
                   // cancel pressed
                   return;
                 }
+                if (filterProvider.startDate != null && newDate.isBefore(filterProvider.startDate!)) {
+                  Fluttertoast.showToast(
+                    msg: appLocalizations.endDateBeforeEndDateError,
+                    fontSize: 16,
+                    toastLength: Toast.LENGTH_LONG,
+                  );
+                  filterProvider.setEndDate(null);
+                  return;
+                }
                 filterProvider.setEndDate(newDate);
               },
               child: Text(filterProvider.endDate != null ? DateFormat('dd.MM.yyyy').format(filterProvider.endDate!) : '-'),
@@ -169,7 +188,7 @@ class _FilterScreenState extends State<FilterScreen> {
                 icon: const Icon(Icons.remove_circle_outline_outlined),
               ),
           ],
-        )
+        ),
       ],
     );
   }

@@ -22,5 +22,13 @@
      "filterScreenName": "Filters",
      "@filterScreenName":{
         "description": "Filter"
-     }
+     },
+       "startDateAfterEndDateError": "Start date must be before end date",
+       "@startDateAfterEndDateError":{
+          "description": "Start date must be before end date"
+       },
+       "endDateBeforeEndDateError": "End date must be after start date",
+       "@endDateBeforeEndDateError":{
+          "description": "End date must be after start date"
+       }
 }
