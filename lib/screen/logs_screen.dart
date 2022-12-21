@@ -49,24 +49,30 @@ class _LogsScreenState extends State<LogsScreen> {
         ),
         child: SizedBox(
           height: mediaQueryUtil.height(0.96),
-          child: FutureBuilder(
-            future: CallLog.get(),
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              if (snapshot.hasData) {
-                return Consumer<FilterProvider>(builder: (context, filterProvider, _) {
-                  List<CallLogListRow> callLogListRows = getCallLogListRows(snapshot, filterProvider);
-                  return ListView.builder(
-                    itemCount: callLogListRows.length,
-                    itemBuilder: (context, index) {
-                      return callLogListRows[index];
-                    },
-                  );
-                });
-              } else if (snapshot.hasError) {
-                return Text('Error: ${snapshot.error}');
-              } else {
-                return const CircularProgressIndicator();
-              }
+          child: Consumer<FilterProvider>(
+            builder: (context, filterProvider, _) {
+              return FutureBuilder(
+                future: CallLog.query(
+                  dateFrom: filterProvider.startDate != null ? filterProvider.startDate!.millisecondsSinceEpoch : null,
+                  dateTo: filterProvider.endDate != null ? filterProvider.endDate!.millisecondsSinceEpoch : null,
+                  durationFrom: filterProvider.minDuration * 60,
+                ),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (snapshot.hasData) {
+                    List<CallLogListRow> callLogListRows = _getCallLogListRows(snapshot);
+                    return ListView.builder(
+                      itemCount: callLogListRows.length,
+                      itemBuilder: (context, index) {
+                        return callLogListRows[index];
+                      },
+                    );
+                  } else if (snapshot.hasError) {
+                    return Text('Error: ${snapshot.error}');
+                  } else {
+                    return const CircularProgressIndicator();
+                  }
+                },
+              );
             },
           ),
         ),
@@ -74,24 +80,9 @@ class _LogsScreenState extends State<LogsScreen> {
     );
   }
 
-  List<CallLogListRow> getCallLogListRows(AsyncSnapshot snapshot, FilterProvider filterProvider) {
-    List<CallLogEntry> list = snapshot.data.toList();
-
-    return list.where((entry) => (entry.duration! / 60) > filterProvider.minDuration).where((entry) {
-      if (filterProvider.startDate != null) {
-        return entry.timestamp! >= filterProvider.startDate!.millisecondsSinceEpoch;
-      }
-      return true;
-    }).where((entry) {
-      if (filterProvider.endDate != null) {
-        return entry.timestamp! <= filterProvider.endDate!.millisecondsSinceEpoch;
-      }
-      return true;
-    }).map((entry) {
-      return CallLogListRow(
-        callLogEntry: entry,
-      );
-    }).toList();
+  List<CallLogListRow> _getCallLogListRows(AsyncSnapshot snapshot) {
+    List<CallLogEntry> data = snapshot.data.toList();
+    return data.map((entry) => CallLogListRow(callLogEntry: entry)).toList();
   }
 
   List<PopupMenuItem<MenuSections>> _buildMenuSection(AppLocalizations appLocalizations) {

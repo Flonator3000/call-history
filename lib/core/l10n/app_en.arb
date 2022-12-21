@@ -1,7 +1,7 @@
 {
-    "minDurationInfoText": "Calls took so many minutes:",
+    "minDurationInfoText": "Calls took at least so many minutes:",
     "@minDurationInfoText":{
-        "description": "Calls took so many minutes:"
+        "description": "Calls took at least so many minutes:"
     },
     "startDateInfoText": "Calls have taken place after or on this date:",
     "@startDateInfoText":{
