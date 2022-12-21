@@ -88,8 +88,9 @@ class CallLogListRow extends StatelessWidget {
 
   String _getDurationText(int duration) {
     String durationText = "";
-    if((duration / 60).round() != 0) {
-      durationText = "${(duration / 60).round()}min ";
+    int mins = (duration / 60).floor();
+    if(mins != 0) {
+      durationText = "${mins}min ";
     }
     durationText = '$durationText${duration % 60}s';
     return durationText;
