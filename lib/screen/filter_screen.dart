@@ -25,7 +25,6 @@ class _FilterScreenState extends State<FilterScreen> {
     return WillPopScope(
       onWillPop: () async {
         bool shouldPop = true;
-        //TODO shouldPop = await showWarning(context); https://www.youtube.com/watch?v=vEmJLvL1pzQ
         return shouldPop;
       },
       child: Scaffold(
@@ -64,7 +63,7 @@ class _FilterScreenState extends State<FilterScreen> {
     return Row(
       children: [
         SizedBox(
-          width: mediaQueryUtil.width(0.4),
+          width: mediaQueryUtil.width(0.55),
           child: Text(
             appLocalizations.minDurationInfoText,
             style: const TextStyle(color: Colors.black),
@@ -107,7 +106,7 @@ class _FilterScreenState extends State<FilterScreen> {
     return Row(
       children: [
         SizedBox(
-          width: mediaQueryUtil.width(0.4),
+          width: mediaQueryUtil.width(0.55),
           child: Text(
             appLocalizations.startDateInfoText,
             style: const TextStyle(color: Colors.black),
@@ -152,7 +151,7 @@ class _FilterScreenState extends State<FilterScreen> {
     return Row(
       children: [
         SizedBox(
-          width: mediaQueryUtil.width(0.4),
+          width: mediaQueryUtil.width(0.55),
           child: Text(
             appLocalizations.endDateInfoText,
             style: const TextStyle(color: Colors.black),
