@@ -3,6 +3,7 @@ import 'package:call_history/widget/media_query_util.dart';
 import 'package:call_log/call_log.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CallLogListRow extends StatelessWidget {
   final CallLogEntry callLogEntry;
@@ -15,6 +16,7 @@ class CallLogListRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final MediaQueryUtil mediaQueryUtil = MediaQueryUtil.of(context);
+    final AppLocalizations appLocalizations = AppLocalizations.of(context)!;
 
     return Container(
       margin: EdgeInsets.only(bottom: mediaQueryUtil.height(0.01)),
@@ -36,7 +38,7 @@ class CallLogListRow extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  callLogEntry.name != null ? callLogEntry.name! : "Unknown",
+                  callLogEntry.name != null ? callLogEntry.name! : appLocalizations.unknownCallerName,
                   style: const TextStyle(color: AppColors.mainTextColor, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: mediaQueryUtil.height(0.01)),
