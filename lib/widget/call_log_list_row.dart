@@ -73,7 +73,7 @@ class CallLogListRow extends StatelessWidget {
             Column(
               children: [
                 Text(
-                  "${callLogEntry.duration!}s",
+                  _getDurationText(callLogEntry.duration!),
                   style: const TextStyle(color: AppColors.mainTextColor),
                 ),
               ],
@@ -82,5 +82,14 @@ class CallLogListRow extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String _getDurationText(int duration) {
+    String durationText = "";
+    if((duration / 60).round() != 0) {
+      durationText = "${(duration / 60).round()}min ";
+    }
+    durationText = '$durationText${duration % 60}s';
+    return durationText;
   }
 }
