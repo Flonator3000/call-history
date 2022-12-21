@@ -1,3 +1,4 @@
+import 'package:call_history/core/theme/colors.dart';
 import 'package:call_history/widget/media_query_util.dart';
 import 'package:call_log/call_log.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class CallLogListRow extends StatelessWidget {
       margin: EdgeInsets.only(bottom: mediaQueryUtil.height(0.01)),
       height: mediaQueryUtil.height(0.13),
       decoration: BoxDecoration(
-        color: const Color.fromRGBO(224, 224, 224, 1),
+        color: AppColors.secondary.shade100,
         border: Border(
           bottom: BorderSide(
             width: mediaQueryUtil.height(0.001),
@@ -36,12 +37,12 @@ class CallLogListRow extends StatelessWidget {
               children: [
                 Text(
                   callLogEntry.name != null ? callLogEntry.name! : "Unknown",
-                  style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                  style: const TextStyle(color: AppColors.mainTextColor, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: mediaQueryUtil.height(0.01)),
                 Text(
                   callLogEntry.formattedNumber != null ? callLogEntry.formattedNumber! : callLogEntry.number!,
-                  style: const TextStyle(color: Colors.black),
+                  style: const TextStyle(color: AppColors.mainTextColor),
                 ),
               ],
             ),
@@ -53,7 +54,7 @@ class CallLogListRow extends StatelessWidget {
                 Text(
                   callLogEntry.timestamp != null ? DateFormat('dd-MM-yyyy').format(DateTime.fromMicrosecondsSinceEpoch(callLogEntry.timestamp!)) : '',
                   style: const TextStyle(
-                    color: Colors.black,
+                    color: AppColors.mainTextColor,
                     fontStyle: FontStyle.italic,
                   ),
                 ),
@@ -63,7 +64,7 @@ class CallLogListRow extends StatelessWidget {
                 Text(
                   callLogEntry.timestamp != null ? DateFormat('HH:mm').format(DateTime.fromMicrosecondsSinceEpoch(callLogEntry.timestamp!)) : '',
                   style: const TextStyle(
-                    color: Colors.black,
+                    color: AppColors.mainTextColor,
                     fontStyle: FontStyle.italic,
                   ),
                 ),
@@ -73,7 +74,7 @@ class CallLogListRow extends StatelessWidget {
               children: [
                 Text(
                   "${callLogEntry.duration!}s",
-                  style: const TextStyle(color: Colors.black),
+                  style: const TextStyle(color: AppColors.mainTextColor),
                 ),
               ],
             ),

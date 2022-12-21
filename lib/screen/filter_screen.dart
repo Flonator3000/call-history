@@ -77,7 +77,7 @@ class _FilterScreenState extends State<FilterScreen> {
               height: mediaQueryUtil.height(0.08),
               child: TextField(
                 controller: _minController,
-                style: const TextStyle(fontSize: 20.0),
+                style: const TextStyle(fontSize: 20.0, color: Colors.black),
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                 ),

@@ -1,6 +1,6 @@
-
 import 'package:call_history/core/configure_dependencies.dart';
 import 'package:call_history/core/l10n/l10n.dart';
+import 'package:call_history/core/theme/app_theme.dart';
 import 'package:call_history/screen/filter_screen.dart';
 import 'package:call_history/model/filter_container.dart';
 import 'package:call_history/model/hive/box_names.dart';
@@ -29,34 +29,33 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-
   @override
   Widget build(BuildContext context) {
+    final appTheme = AppTheme.theme(context);
 
-    return MultiProvider(providers: [
-      ChangeNotifierProvider(create: (context) => FilterProvider()),
-    ], child: Consumer<FilterProvider>(
-      builder: (context, provider, _) =>
-          MediaQueryUtil(
-            child: MaterialApp(
-              title: 'Call history',
-              theme: ThemeData(
-                primarySwatch: Colors.blue,
-              ),
-              home: const LogsScreen(),
-              routes: {
-                FilterScreen.routeName: (context) => const FilterScreen(),
-              },
-              supportedLocales: L10n.all,
-              localizationsDelegates: const [
-                AppLocalizations.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-              ],
-            ),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => FilterProvider()),
+      ],
+      child: Consumer<FilterProvider>(
+        builder: (context, provider, _) => MediaQueryUtil(
+          child: MaterialApp(
+            title: 'Call history',
+            theme: appTheme,
+            home: const LogsScreen(),
+            routes: {
+              FilterScreen.routeName: (context) => const FilterScreen(),
+            },
+            supportedLocales: L10n.all,
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+            ],
           ),
-    ),
+        ),
+      ),
     );
   }
 }

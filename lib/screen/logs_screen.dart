@@ -1,4 +1,5 @@
 import 'package:call_history/core/constant/menu_sections.dart';
+import 'package:call_history/core/theme/colors.dart';
 import 'package:call_history/widget/call_log_list_row.dart';
 import 'package:call_history/screen/filter_screen.dart';
 import 'package:call_history/provider/FilterProvider.dart';
@@ -93,7 +94,10 @@ class _LogsScreenState extends State<LogsScreen> {
           children: [
             const Icon(Icons.aod_outlined, color: Colors.black, size: 20),
             const SizedBox(width: 10),
-            Text(appLocalizations.menuSectionTextLicenses),
+            Text(
+              appLocalizations.menuSectionTextLicenses,
+              style: const TextStyle(color: AppColors.mainTextColor),
+            ),
           ],
         ),
       ),
