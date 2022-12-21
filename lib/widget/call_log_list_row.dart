@@ -54,7 +54,7 @@ class CallLogListRow extends StatelessWidget {
                   height: mediaQueryUtil.height(0.007),
                 ),
                 Text(
-                  callLogEntry.timestamp != null ? DateFormat('dd-MM-yyyy').format(DateTime.fromMicrosecondsSinceEpoch(callLogEntry.timestamp!)) : '',
+                  callLogEntry.timestamp != null ? DateFormat('dd-MM-yyyy').format(DateTime.fromMillisecondsSinceEpoch(callLogEntry.timestamp!)) : '',
                   style: const TextStyle(
                     color: AppColors.mainTextColor,
                     fontStyle: FontStyle.italic,
@@ -64,7 +64,7 @@ class CallLogListRow extends StatelessWidget {
                   height: mediaQueryUtil.height(0.01),
                 ),
                 Text(
-                  callLogEntry.timestamp != null ? DateFormat('HH:mm').format(DateTime.fromMicrosecondsSinceEpoch(callLogEntry.timestamp!)) : '',
+                  callLogEntry.timestamp != null ? DateFormat('HH:mm').format(DateTime.fromMillisecondsSinceEpoch(callLogEntry.timestamp!)) : '',
                   style: const TextStyle(
                     color: AppColors.mainTextColor,
                     fontStyle: FontStyle.italic,
