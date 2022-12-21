@@ -43,10 +43,10 @@ class _LogsScreenState extends State<LogsScreen> {
       appBar: appBar,
       body: Padding(
         padding: EdgeInsets.only(
-          left: mediaQueryUtil.width(0.03),
-          right: mediaQueryUtil.width(0.03),
-          top: mediaQueryUtil.height(0.02),
-          bottom: mediaQueryUtil.height(0.02),
+          left: mediaQueryUtil.width(0.025),
+          right: mediaQueryUtil.width(0.025),
+          top: mediaQueryUtil.height(0.015),
+          bottom: mediaQueryUtil.height(0.015),
         ),
         child: SizedBox(
           height: mediaQueryUtil.height(0.96),
