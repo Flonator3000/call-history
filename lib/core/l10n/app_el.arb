@@ -1,0 +1,11 @@
+{
+    "minDurationInfoText": "Οι κλήσεις διήρκεσαν τουλάχιστον τόσα λεπτά:",
+    "startDateInfoText": "Οι κλήσεις πραγματοποιήθηκαν μετά ή κατά την ημερομηνία αυτή:",
+    "endDateInfoText": "Οι κλήσεις πραγματοποιήθηκαν πριν ή κατά την ημερομηνία αυτή:",
+    "unknownCallerName": "Άγνωστο",
+    "logScreenName": "Ιστορικό",
+    "filterScreenName": "Φίλτρο",
+    "startDateAfterEndDateError": "Η ημερομηνία έναρξης πρέπει να είναι πριν από την ημερομηνία λήξης",
+    "endDateBeforeEndDateError": "Η ημερομηνία λήξης πρέπει να είναι μετά την ημερομηνία έναρξης",
+    "menuSectionTextLicenses": "Άδειες χρήσης"
+}

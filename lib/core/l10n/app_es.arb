@@ -1,0 +1,11 @@
+{
+    "minDurationInfoText": "Las llamadas duraron al menos este número de minutos:",
+    "startDateInfoText": "Las llamadas se realizaron después o en esta fecha:",
+    "endDateInfoText": "Las llamadas tuvieron lugar antes o en esta fecha:",
+    "unknownCallerName": "desconocido",
+    "logScreenName": "Historia",
+    "filterScreenName": "Filtro",
+    "startDateAfterEndDateError": "La fecha de inicio debe ser anterior a la fecha final",
+    "endDateBeforeEndDateError": "La fecha final debe ser posterior a la fecha inicial",
+    "menuSectionTextLicenses": "Licencias"
+}
