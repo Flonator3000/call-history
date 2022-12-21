@@ -107,7 +107,15 @@ class _LogsScreenState extends State<LogsScreen> {
   _onMenuSectionSelected(BuildContext context, MenuSections menuSection) {
     switch (menuSection) {
       case MenuSections.LICENSES:
-        showLicensePage(context: context); // TODO also set app name and icon https://www.youtube.com/watch?v=9lrLwIHI6IE
+        showLicensePage(
+          context: context,
+          applicationName: "Call Logs",
+          applicationIcon: Image.asset(
+            'assets/logo.png',
+            width: 48,
+            height: 48,
+          ),
+        );
         break;
     }
   }
