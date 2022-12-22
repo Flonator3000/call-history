@@ -38,11 +38,11 @@ class _FilterScreenState extends State<FilterScreen> {
           child: Consumer<FilterProvider>(
             builder: (context, filterProvider, _) => Column(
               children: [
-                _buildMinDurationInput(filterProvider, mediaQueryUtil, appLocalizations),
-                _buildDivider(mediaQueryUtil),
                 _buildStartDateInput(filterProvider, mediaQueryUtil, appLocalizations),
                 _buildDivider(mediaQueryUtil),
                 _buildEndDateInput(filterProvider, mediaQueryUtil, appLocalizations),
+                _buildDivider(mediaQueryUtil),
+                _buildMinDurationInput(filterProvider, mediaQueryUtil, appLocalizations),
                 _buildDivider(mediaQueryUtil),
                 _buildCallTypesInput(filterProvider, mediaQueryUtil, appLocalizations),
               ],
