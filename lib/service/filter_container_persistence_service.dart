@@ -11,24 +11,8 @@ class FilterContainerPersistenceService {
     filterContainerBox = Hive.box<FilterContainer>(BoxNames.FILTER_CONTAINER_BOX_NAME);
   }
 
-  setMinDuration(int minDuration) {
+  update(FilterContainer filterContainer) {
     _createIfNotExisting();
-    FilterContainer filterContainer = filterContainerBox.getAt(BOX_INDEX)!;
-    filterContainer.minDuration = minDuration;
-    filterContainerBox.putAt(BOX_INDEX, filterContainer);
-  }
-
-  setStartDate(DateTime? startDate) {
-    _createIfNotExisting();
-    FilterContainer filterContainer = filterContainerBox.getAt(BOX_INDEX)!;
-    filterContainer.startDate = startDate;
-    filterContainerBox.putAt(BOX_INDEX, filterContainer);
-  }
-
-  setEndDate(DateTime? endDate) {
-    _createIfNotExisting();
-    FilterContainer filterContainer = filterContainerBox.getAt(BOX_INDEX)!;
-    filterContainer.endDate = endDate;
     filterContainerBox.putAt(BOX_INDEX, filterContainer);
   }
 

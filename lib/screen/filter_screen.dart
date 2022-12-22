@@ -1,10 +1,11 @@
+import 'package:call_history/model/filter_container.dart';
 import 'package:call_history/provider/FilterProvider.dart';
 import 'package:call_history/widget/media_query_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FilterScreen extends StatefulWidget {
   const FilterScreen({Key? key}) : super(key: key);
@@ -36,19 +37,13 @@ class _FilterScreenState extends State<FilterScreen> {
           child: Consumer<FilterProvider>(
             builder: (context, filterProvider, _) => Column(
               children: [
-                _buildMinDuration(filterProvider, mediaQueryUtil, appLocalizations),
-                Divider(
-                  height: mediaQueryUtil.height(0.07),
-                  thickness: 0.7,
-                  color: Colors.grey,
-                ),
-                _buildStartDateRow(filterProvider, mediaQueryUtil, appLocalizations),
-                Divider(
-                  height: mediaQueryUtil.height(0.07),
-                  thickness: 0.7,
-                  color: Colors.grey,
-                ),
-                _buildEndDateRow(filterProvider, mediaQueryUtil, appLocalizations),
+                _buildMinDurationInput(filterProvider, mediaQueryUtil, appLocalizations),
+                _buildDivider(mediaQueryUtil),
+                _buildStartDateInput(filterProvider, mediaQueryUtil, appLocalizations),
+                _buildDivider(mediaQueryUtil),
+                _buildEndDateInput(filterProvider, mediaQueryUtil, appLocalizations),
+                _buildDivider(mediaQueryUtil),
+                // _buildCallTypesInput(filterProvider, mediaQueryUtil, appLocalizations),
               ],
             ),
           ),
@@ -57,8 +52,8 @@ class _FilterScreenState extends State<FilterScreen> {
     );
   }
 
-  _buildMinDuration(FilterProvider filterProvider, MediaQueryUtil mediaQueryUtil, AppLocalizations appLocalizations) {
-    _minController.text = filterProvider.minDuration.toString();
+  _buildMinDurationInput(FilterProvider filterProvider, MediaQueryUtil mediaQueryUtil, AppLocalizations appLocalizations) {
+    _minController.text = filterProvider.filterContainer.minDuration.toString();
     _minController.selection = TextSelection(baseOffset: 0, extentOffset: _minController.value.text.length);
     return Row(
       children: [
@@ -85,14 +80,18 @@ class _FilterScreenState extends State<FilterScreen> {
                 textAlignVertical: TextAlignVertical.top,
                 onSubmitted: (text) {
                   int parsed = int.tryParse(text) ?? 0;
-                  filterProvider.setMinDuration(parsed);
+                  FilterContainer filterContainer = filterProvider.filterContainer; // TODO Consider to make filterContainer a freezed model and use copyWith() method
+                  filterContainer.minDuration = parsed;
+                  filterProvider.update(filterContainer);
                 },
               ),
             ),
-            if (filterProvider.minDuration != 0)
+            if (filterProvider.filterContainer.minDuration != 0)
               IconButton(
                 onPressed: () {
-                  filterProvider.setMinDuration(0);
+                  FilterContainer filterContainer = filterProvider.filterContainer;
+                  filterContainer.minDuration = 0;
+                  filterProvider.update(filterContainer);
                 },
                 icon: const Icon(Icons.remove_circle_outline_outlined),
               ),
@@ -102,7 +101,7 @@ class _FilterScreenState extends State<FilterScreen> {
     );
   }
 
-  _buildStartDateRow(FilterProvider filterProvider, MediaQueryUtil mediaQueryUtil, AppLocalizations appLocalizations) {
+  _buildStartDateInput(FilterProvider filterProvider, MediaQueryUtil mediaQueryUtil, AppLocalizations appLocalizations) {
     return Row(
       children: [
         SizedBox(
@@ -121,23 +120,29 @@ class _FilterScreenState extends State<FilterScreen> {
                   // cancel pressed
                   return;
                 }
-                if (filterProvider.endDate != null && newDate.isAfter(filterProvider.endDate!)) {
+                if (filterProvider.filterContainer.endDate != null && newDate.isAfter(filterProvider.filterContainer.endDate!)) {
                   Fluttertoast.showToast(
                     msg: appLocalizations.startDateAfterEndDateError,
                     fontSize: 16,
                     toastLength: Toast.LENGTH_LONG,
                   );
-                  filterProvider.setStartDate(null);
+                  FilterContainer filterContainer = filterProvider.filterContainer;
+                  filterContainer.startDate = null;
+                  filterProvider.update(filterContainer);
                   return;
                 }
-                filterProvider.setStartDate(newDate);
+                FilterContainer filterContainer = filterProvider.filterContainer;
+                filterContainer.startDate = newDate;
+                filterProvider.update(filterContainer);
               },
-              child: Text(filterProvider.startDate != null ? DateFormat('dd.MM.yyyy').format(filterProvider.startDate!) : '-'),
+              child: Text(filterProvider.filterContainer.startDate != null ? DateFormat('dd.MM.yyyy').format(filterProvider.filterContainer.startDate!) : '-'),
             ),
-            if (filterProvider.startDate != null)
+            if (filterProvider.filterContainer.startDate != null)
               IconButton(
                 onPressed: () {
-                  filterProvider.setStartDate(null);
+                  FilterContainer filterContainer = filterProvider.filterContainer;
+                  filterContainer.startDate = null;
+                  filterProvider.update(filterContainer);
                 },
                 icon: const Icon(Icons.remove_circle_outline_outlined),
               ),
@@ -147,7 +152,7 @@ class _FilterScreenState extends State<FilterScreen> {
     );
   }
 
-  _buildEndDateRow(FilterProvider filterProvider, MediaQueryUtil mediaQueryUtil, AppLocalizations appLocalizations) {
+  _buildEndDateInput(FilterProvider filterProvider, MediaQueryUtil mediaQueryUtil, AppLocalizations appLocalizations) {
     return Row(
       children: [
         SizedBox(
@@ -166,23 +171,29 @@ class _FilterScreenState extends State<FilterScreen> {
                   // cancel pressed
                   return;
                 }
-                if (filterProvider.startDate != null && newDate.isBefore(filterProvider.startDate!)) {
+                if (filterProvider.filterContainer.startDate != null && newDate.isBefore(filterProvider.filterContainer.startDate!)) {
                   Fluttertoast.showToast(
                     msg: appLocalizations.endDateBeforeEndDateError,
                     fontSize: 16,
                     toastLength: Toast.LENGTH_LONG,
                   );
-                  filterProvider.setEndDate(null);
+                  FilterContainer filterContainer = filterProvider.filterContainer;
+                  filterContainer.endDate = null;
+                  filterProvider.update(filterContainer);
                   return;
                 }
-                filterProvider.setEndDate(newDate);
+                FilterContainer filterContainer = filterProvider.filterContainer;
+                filterContainer.endDate = newDate;
+                filterProvider.update(filterContainer);
               },
-              child: Text(filterProvider.endDate != null ? DateFormat('dd.MM.yyyy').format(filterProvider.endDate!) : '-'),
+              child: Text(filterProvider.filterContainer.endDate != null ? DateFormat('dd.MM.yyyy').format(filterProvider.filterContainer.endDate!) : '-'),
             ),
-            if (filterProvider.endDate != null)
+            if (filterProvider.filterContainer.endDate != null)
               IconButton(
                 onPressed: () {
-                  filterProvider.setEndDate(null);
+                  FilterContainer filterContainer = filterProvider.filterContainer;
+                  filterContainer.endDate = null;
+                  filterProvider.update(filterContainer);
                 },
                 icon: const Icon(Icons.remove_circle_outline_outlined),
               ),
@@ -192,5 +203,13 @@ class _FilterScreenState extends State<FilterScreen> {
     );
   }
 
-//showWarning() https://www.youtube.com/watch?v=vEmJLvL1pzQ
+  _buildDivider(MediaQueryUtil mediaQueryUtil) {
+    return Divider(
+      height: mediaQueryUtil.height(0.07),
+      thickness: 0.7,
+      color: Colors.grey,
+    );
+  }
+
+  _buildCallTypesInput(FilterProvider filterProvider, MediaQueryUtil mediaQueryUtil, AppLocalizations appLocalizations) {}
 }

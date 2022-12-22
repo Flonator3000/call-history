@@ -1,13 +1,14 @@
 import 'package:call_history/core/constant/menu_sections.dart';
 import 'package:call_history/core/theme/colors.dart';
-import 'package:call_history/widget/call_log_list_row.dart';
-import 'package:call_history/screen/filter_screen.dart';
+import 'package:call_history/model/filter_container.dart';
 import 'package:call_history/provider/FilterProvider.dart';
+import 'package:call_history/screen/filter_screen.dart';
+import 'package:call_history/widget/call_log_list_row.dart';
 import 'package:call_history/widget/media_query_util.dart';
 import 'package:call_log/call_log.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 class LogsScreen extends StatefulWidget {
   const LogsScreen({Key? key}) : super(key: key);
@@ -112,15 +113,16 @@ class _LogsScreenState extends State<LogsScreen> {
   }
 
   Future<List<CallLogListRow>> _getCallLogsFuture(FilterProvider filterProvider) {
+    FilterContainer filterContainer = filterProvider.filterContainer;
     return CallLog.query(
-      dateFrom: filterProvider.startDate != null ? filterProvider.startDate!.millisecondsSinceEpoch : null,
-      dateTo: filterProvider.endDate != null ? filterProvider.endDate!.millisecondsSinceEpoch : null,
-      durationFrom: filterProvider.minDuration * 60,
+      dateFrom: filterContainer.startDate != null ? filterContainer.startDate!.millisecondsSinceEpoch : null,
+      dateTo: filterContainer.endDate != null ? filterContainer.endDate!.millisecondsSinceEpoch : null,
+      durationFrom: filterContainer.minDuration * 60,
     ).then((Iterable<CallLogEntry> callLogEntries) {
       List<CallLogEntry> callLogEntryList = callLogEntries.where((e) => _isCallLogEntryValidByFilters(e, filterProvider)).toList(); // Apply filters
       callLogEntryList.sort((a, b) => _compareByTimestamp(a, b)); // Sort by date
       return callLogEntryList.map((e) => _convertCallLogEntriesToCallLogListRows(e)).toList(); // Convert to CallLogRow
-    }).catchError((error) => []);
+    }).catchError((error) => []); // TODO handle error
   }
 
   /// This additional filter method is needed, because the CallLogs.query method does not provide all filter possibilities.
