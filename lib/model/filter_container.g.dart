@@ -6,24 +6,25 @@ part of 'filter_container.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class FilterContainerAdapter extends TypeAdapter<FilterContainer> {
+class FilterContainerAdapter extends TypeAdapter<_$_FilterContainer> {
   @override
   final int typeId = 0;
 
   @override
-  FilterContainer read(BinaryReader reader) {
+  _$_FilterContainer read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return FilterContainer()
-      ..minDuration = fields[0] as int
-      ..startDate = fields[1] as DateTime?
-      ..endDate = fields[2] as DateTime?;
+    return _$_FilterContainer(
+      minDuration: fields[0] as int,
+      startDate: fields[1] as DateTime?,
+      endDate: fields[2] as DateTime?,
+    );
   }
 
   @override
-  void write(BinaryWriter writer, FilterContainer obj) {
+  void write(BinaryWriter writer, _$_FilterContainer obj) {
     writer
       ..writeByte(3)
       ..writeByte(0)
@@ -38,9 +39,21 @@ class FilterContainerAdapter extends TypeAdapter<FilterContainer> {
   int get hashCode => typeId.hashCode;
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is FilterContainerAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
+  bool operator ==(Object other) => identical(this, other) || other is FilterContainerAdapter && runtimeType == other.runtimeType && typeId == other.typeId;
 }
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_$_FilterContainer _$$_FilterContainerFromJson(Map<String, dynamic> json) => _$_FilterContainer(
+      minDuration: json['minDuration'] as int,
+      startDate: json['startDate'] == null ? null : DateTime.parse(json['startDate'] as String),
+      endDate: json['endDate'] == null ? null : DateTime.parse(json['endDate'] as String),
+    );
+
+Map<String, dynamic> _$$_FilterContainerToJson(_$_FilterContainer instance) => <String, dynamic>{
+      'minDuration': instance.minDuration,
+      'startDate': instance.startDate?.toIso8601String(),
+      'endDate': instance.endDate?.toIso8601String(),
+    };

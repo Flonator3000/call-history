@@ -1,4 +1,3 @@
-import 'package:call_history/model/filter_container.dart';
 import 'package:call_history/provider/FilterProvider.dart';
 import 'package:call_history/widget/media_query_util.dart';
 import 'package:flutter/material.dart';
@@ -80,18 +79,14 @@ class _FilterScreenState extends State<FilterScreen> {
                 textAlignVertical: TextAlignVertical.top,
                 onSubmitted: (text) {
                   int parsed = int.tryParse(text) ?? 0;
-                  FilterContainer filterContainer = filterProvider.filterContainer; // TODO Consider to make filterContainer a freezed model and use copyWith() method
-                  filterContainer.minDuration = parsed;
-                  filterProvider.update(filterContainer);
+                  filterProvider.update(filterProvider.filterContainer.copyWith(minDuration: parsed));
                 },
               ),
             ),
             if (filterProvider.filterContainer.minDuration != 0)
               IconButton(
                 onPressed: () {
-                  FilterContainer filterContainer = filterProvider.filterContainer;
-                  filterContainer.minDuration = 0;
-                  filterProvider.update(filterContainer);
+                  filterProvider.update(filterProvider.filterContainer.copyWith(minDuration: 0));
                 },
                 icon: const Icon(Icons.remove_circle_outline_outlined),
               ),
@@ -126,23 +121,17 @@ class _FilterScreenState extends State<FilterScreen> {
                     fontSize: 16,
                     toastLength: Toast.LENGTH_LONG,
                   );
-                  FilterContainer filterContainer = filterProvider.filterContainer;
-                  filterContainer.startDate = null;
-                  filterProvider.update(filterContainer);
+                  filterProvider.update(filterProvider.filterContainer.copyWith(startDate: null));
                   return;
                 }
-                FilterContainer filterContainer = filterProvider.filterContainer;
-                filterContainer.startDate = newDate;
-                filterProvider.update(filterContainer);
+                filterProvider.update(filterProvider.filterContainer.copyWith(startDate: newDate));
               },
               child: Text(filterProvider.filterContainer.startDate != null ? DateFormat('dd.MM.yyyy').format(filterProvider.filterContainer.startDate!) : '-'),
             ),
             if (filterProvider.filterContainer.startDate != null)
               IconButton(
                 onPressed: () {
-                  FilterContainer filterContainer = filterProvider.filterContainer;
-                  filterContainer.startDate = null;
-                  filterProvider.update(filterContainer);
+                  filterProvider.update(filterProvider.filterContainer.copyWith(startDate: null));
                 },
                 icon: const Icon(Icons.remove_circle_outline_outlined),
               ),
@@ -177,23 +166,17 @@ class _FilterScreenState extends State<FilterScreen> {
                     fontSize: 16,
                     toastLength: Toast.LENGTH_LONG,
                   );
-                  FilterContainer filterContainer = filterProvider.filterContainer;
-                  filterContainer.endDate = null;
-                  filterProvider.update(filterContainer);
+                  filterProvider.update(filterProvider.filterContainer.copyWith(endDate: null));
                   return;
                 }
-                FilterContainer filterContainer = filterProvider.filterContainer;
-                filterContainer.endDate = newDate;
-                filterProvider.update(filterContainer);
+                filterProvider.update(filterProvider.filterContainer.copyWith(endDate: newDate));
               },
               child: Text(filterProvider.filterContainer.endDate != null ? DateFormat('dd.MM.yyyy').format(filterProvider.filterContainer.endDate!) : '-'),
             ),
             if (filterProvider.filterContainer.endDate != null)
               IconButton(
                 onPressed: () {
-                  FilterContainer filterContainer = filterProvider.filterContainer;
-                  filterContainer.endDate = null;
-                  filterProvider.update(filterContainer);
+                  filterProvider.update(filterProvider.filterContainer.copyWith(endDate: null));
                 },
                 icon: const Icon(Icons.remove_circle_outline_outlined),
               ),

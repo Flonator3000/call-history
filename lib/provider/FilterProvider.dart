@@ -13,6 +13,7 @@ class FilterProvider with ChangeNotifier {
   }
 
   update(FilterContainer filterContainer) {
+    this.filterContainer = filterContainer;
     filterContainerService.update(filterContainer);
     notifyListeners();
   }

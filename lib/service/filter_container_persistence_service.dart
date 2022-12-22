@@ -18,15 +18,15 @@ class FilterContainerPersistenceService {
 
   FilterContainer get() {
     _createIfNotExisting();
-    return filterContainerBox.getAt(BOX_INDEX)!;
+    FilterContainer filterContainer = filterContainerBox.getAt(BOX_INDEX)!;
+    return filterContainer;
   }
 
   _createIfNotExisting() {
     if (filterContainerBox.containsKey(BOX_INDEX)) {
       return;
     }
-    FilterContainer filterContainer = FilterContainer();
-    filterContainer.minDuration = MIN_DURATION_DEFAULT;
+    FilterContainer filterContainer = const FilterContainer(minDuration: 0);
     filterContainerBox.put(BOX_INDEX, filterContainer);
   }
 }
