@@ -12,5 +12,10 @@
     "filterIsCallTypeOutgoingAccepted": "المكالمات الصادرة",
     "filterIsCallTypeMissedAccepted": "مكالمات لم يرد عليها",
     "filterIsCallTypeRejectedAccepted": "المكالمات المرفوضة",
-    "filterIsCallTypeBlockedAccepted": "المكالمات المحظورة"
+    "filterIsCallTypeBlockedAccepted": "المكالمات المحظورة",
+    "callTypeIncoming": "الوارد",
+    "callTypeOutgoing": "الصادرة",
+    "callTypeMissed": "مفقود",
+    "callTypeRejected": "مرفوض",
+    "callTypeBlocked": "محظور"
 }

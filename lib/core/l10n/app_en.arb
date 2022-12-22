@@ -54,6 +54,26 @@
       "filterIsCallTypeBlockedAccepted": "Blocked calls",
      "@filterIsCallTypeBlockedAccepted":{
         "description": "Blocked calls"
-     }
+     },
+        "callTypeIncoming": "incoming",
+       "@callTypeIncoming":{
+          "description": "incoming"
+       },
+        "callTypeOutgoing": "outgoing",
+       "@callTypeOutgoing":{
+          "description": "outgoing"
+       },
+        "callTypeMissed": "missed",
+       "@callTypeMissed":{
+          "description": "missed"
+       },
+        "callTypeRejected": "rejected",
+       "@callTypeRejected":{
+          "description": "rejected"
+       },
+        "callTypeBlocked": "blocked",
+       "@callTypeBlocked":{
+          "description": "blocked"
+       }
 
 }

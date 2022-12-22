@@ -12,5 +12,10 @@
     "filterIsCallTypeOutgoingAccepted": "Llamadas salientes",
     "filterIsCallTypeMissedAccepted": "Llamadas perdidas",
     "filterIsCallTypeRejectedAccepted": "Llamadas rechazadas",
-    "filterIsCallTypeBlockedAccepted": "Llamadas bloqueadas"
+    "filterIsCallTypeBlockedAccepted": "Llamadas bloqueadas",
+    "callTypeIncoming": "entrante",
+    "callTypeOutgoing": "saliente",
+    "callTypeMissed": "perdida",
+    "callTypeRejected": "rechazada",
+    "callTypeBlocked": "bloqueado"
 }

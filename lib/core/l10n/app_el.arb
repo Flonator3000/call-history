@@ -12,5 +12,10 @@
     "filterIsCallTypeOutgoingAccepted": "Εξερχόμενες κλήσεις",
     "filterIsCallTypeMissedAccepted": "Αναπάντητες κλήσεις",
     "filterIsCallTypeRejectedAccepted": "Απορριφθείσες κλήσεις",
-    "filterIsCallTypeBlockedAccepted": "Αποκλεισμένες κλήσεις"
+    "filterIsCallTypeBlockedAccepted": "Αποκλεισμένες κλήσεις",
+    "callTypeIncoming": "εισερχόμενη",
+    "callTypeOutgoing": "εξερχόμενη",
+    "callTypeMissed": "missed",
+    "callTypeRejected": "rejected",
+    "callTypeBlocked": "blocked"
 }

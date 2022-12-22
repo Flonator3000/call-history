@@ -2,8 +2,8 @@ import 'package:call_history/core/theme/colors.dart';
 import 'package:call_history/widget/media_query_util.dart';
 import 'package:call_log/call_log.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:intl/intl.dart';
 
 class CallLogListRow extends StatelessWidget {
   final CallLogEntry callLogEntry;
@@ -47,6 +47,15 @@ class CallLogListRow extends StatelessWidget {
                   Text(
                     callLogEntry.formattedNumber != null ? callLogEntry.formattedNumber! : callLogEntry.number!,
                     style: const TextStyle(color: AppColors.mainTextColor),
+                  ),
+                  SizedBox(height: mediaQueryUtil.height(0.01)),
+                  Text(
+                    '(${_getCallTypeTextByCallType(callLogEntry.callType, appLocalizations)})',
+                    style: const TextStyle(
+                      color: AppColors.mainTextColor,
+                      fontSize: 10.0,
+                      fontStyle: FontStyle.italic,
+                    ),
                   ),
                 ],
               ),
@@ -102,5 +111,25 @@ class CallLogListRow extends StatelessWidget {
     }
     durationText = '$durationText${duration % 60}s';
     return durationText;
+  }
+
+  String _getCallTypeTextByCallType(CallType? callType, AppLocalizations appLocalizations) {
+    if (callType == null) {
+      return '';
+    }
+    switch (callType) {
+      case CallType.incoming:
+        return appLocalizations.callTypeIncoming;
+      case CallType.outgoing:
+        return appLocalizations.callTypeOutgoing;
+      case CallType.missed:
+        return appLocalizations.callTypeMissed;
+      case CallType.rejected:
+        return appLocalizations.callTypeRejected;
+      case CallType.blocked:
+        return appLocalizations.callTypeBlocked;
+      default:
+        return '';
+    }
   }
 }
