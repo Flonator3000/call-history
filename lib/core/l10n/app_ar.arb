@@ -7,5 +7,10 @@
     "filterScreenName": "عامل التصفية",
     "startDateAfterEndDateError": "يجب أن يكون تاريخ البدء قبل تاريخ الانتهاء",
     "endDateBeforeEndDateError": "يجب أن يكون تاريخ الانتهاء بعد تاريخ البدء",
-    "menuSectionTextLicenses": "التراخيص"
+    "menuSectionTextLicenses": "التراخيص",
+    "filterIsCallTypeIncomingAccepted": "المكالمات الواردة",
+    "filterIsCallTypeOutgoingAccepted": "المكالمات الصادرة",
+    "filterIsCallTypeMissedAccepted": "مكالمات لم يرد عليها",
+    "filterIsCallTypeRejectedAccepted": "المكالمات المرفوضة",
+    "filterIsCallTypeBlockedAccepted": "المكالمات المحظورة"
 }

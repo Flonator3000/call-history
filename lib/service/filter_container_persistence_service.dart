@@ -26,7 +26,14 @@ class FilterContainerPersistenceService {
     if (filterContainerBox.containsKey(BOX_INDEX)) {
       return;
     }
-    FilterContainer filterContainer = const FilterContainer(minDuration: 0);
+    FilterContainer filterContainer = const FilterContainer(
+      minDuration: 0,
+      isCallTypeIncomingAccepted: true,
+      isCallTypeOutgoingAccepted: true,
+      isCallTypeMissedAccepted: true,
+      isCallTypeRejectedAccepted: true,
+      isCallTypeBlockedAccepted: true,
+    );
     filterContainerBox.put(BOX_INDEX, filterContainer);
   }
 }

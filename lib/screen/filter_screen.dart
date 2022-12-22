@@ -1,3 +1,4 @@
+import 'package:call_history/core/theme/colors.dart';
 import 'package:call_history/provider/FilterProvider.dart';
 import 'package:call_history/widget/media_query_util.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +43,7 @@ class _FilterScreenState extends State<FilterScreen> {
                 _buildDivider(mediaQueryUtil),
                 _buildEndDateInput(filterProvider, mediaQueryUtil, appLocalizations),
                 _buildDivider(mediaQueryUtil),
-                // _buildCallTypesInput(filterProvider, mediaQueryUtil, appLocalizations),
+                _buildCallTypesInput(filterProvider, mediaQueryUtil, appLocalizations),
               ],
             ),
           ),
@@ -148,7 +149,7 @@ class _FilterScreenState extends State<FilterScreen> {
           width: mediaQueryUtil.width(0.55),
           child: Text(
             appLocalizations.endDateInfoText,
-            style: const TextStyle(color: Colors.black),
+            style: const TextStyle(color: AppColors.mainTextColor),
           ),
         ),
         Row(
@@ -194,5 +195,93 @@ class _FilterScreenState extends State<FilterScreen> {
     );
   }
 
-  _buildCallTypesInput(FilterProvider filterProvider, MediaQueryUtil mediaQueryUtil, AppLocalizations appLocalizations) {}
+  _buildCallTypesInput(FilterProvider filterProvider, MediaQueryUtil mediaQueryUtil, AppLocalizations appLocalizations) {
+    return Column(children: [
+      Row(
+        children: [
+          SizedBox(
+            width: mediaQueryUtil.width(0.55),
+            child: Text(
+              appLocalizations.filterIsCallTypeIncomingAccepted,
+              style: const TextStyle(color: AppColors.mainTextColor),
+            ),
+          ),
+          Switch(
+            value: filterProvider.filterContainer.isCallTypeIncomingAccepted,
+            onChanged: (isCallTypeIncomingAccepted) {
+              filterProvider.update(filterProvider.filterContainer.copyWith(isCallTypeIncomingAccepted: isCallTypeIncomingAccepted));
+            },
+          ),
+        ],
+      ),
+      Row(
+        children: [
+          SizedBox(
+            width: mediaQueryUtil.width(0.55),
+            child: Text(
+              appLocalizations.filterIsCallTypeOutgoingAccepted,
+              style: const TextStyle(color: AppColors.mainTextColor),
+            ),
+          ),
+          Switch(
+            value: filterProvider.filterContainer.isCallTypeOutgoingAccepted,
+            onChanged: (isCallTypeOutgoingAccepted) {
+              filterProvider.update(filterProvider.filterContainer.copyWith(isCallTypeOutgoingAccepted: isCallTypeOutgoingAccepted));
+            },
+          ),
+        ],
+      ),
+      Row(
+        children: [
+          SizedBox(
+            width: mediaQueryUtil.width(0.55),
+            child: Text(
+              appLocalizations.filterIsCallTypeMissedAccepted,
+              style: const TextStyle(color: AppColors.mainTextColor),
+            ),
+          ),
+          Switch(
+            value: filterProvider.filterContainer.isCallTypeMissedAccepted,
+            onChanged: (isCallTypeMissedAccepted) {
+              filterProvider.update(filterProvider.filterContainer.copyWith(isCallTypeMissedAccepted: isCallTypeMissedAccepted));
+            },
+          ),
+        ],
+      ),
+      Row(
+        children: [
+          SizedBox(
+            width: mediaQueryUtil.width(0.55),
+            child: Text(
+              appLocalizations.filterIsCallTypeRejectedAccepted,
+              style: const TextStyle(color: AppColors.mainTextColor),
+            ),
+          ),
+          Switch(
+            value: filterProvider.filterContainer.isCallTypeRejectedAccepted,
+            onChanged: (isCallTypeRejectedAccepted) {
+              filterProvider.update(filterProvider.filterContainer.copyWith(isCallTypeRejectedAccepted: isCallTypeRejectedAccepted));
+            },
+          ),
+        ],
+      ),
+      Row(
+        children: [
+          SizedBox(
+            width: mediaQueryUtil.width(0.55),
+            child: Text(
+              appLocalizations.filterIsCallTypeBlockedAccepted,
+              style: const TextStyle(color: AppColors.mainTextColor),
+            ),
+          ),
+          Switch(
+            value: filterProvider.filterContainer.isCallTypeBlockedAccepted,
+            onChanged: (isCallTypeBlockedAccepted) {
+              filterProvider.update(filterProvider.filterContainer.copyWith(isCallTypeBlockedAccepted: isCallTypeBlockedAccepted));
+            },
+          ),
+        ],
+      ),
+    ]);
+  }
 }

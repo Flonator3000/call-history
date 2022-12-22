@@ -20,19 +20,34 @@ class FilterContainerAdapter extends TypeAdapter<_$_FilterContainer> {
       minDuration: fields[0] as int,
       startDate: fields[1] as DateTime?,
       endDate: fields[2] as DateTime?,
+      isCallTypeIncomingAccepted: fields[3] as bool,
+      isCallTypeOutgoingAccepted: fields[4] as bool,
+      isCallTypeMissedAccepted: fields[5] as bool,
+      isCallTypeRejectedAccepted: fields[6] as bool,
+      isCallTypeBlockedAccepted: fields[7] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, _$_FilterContainer obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(8)
       ..writeByte(0)
       ..write(obj.minDuration)
       ..writeByte(1)
       ..write(obj.startDate)
       ..writeByte(2)
-      ..write(obj.endDate);
+      ..write(obj.endDate)
+      ..writeByte(3)
+      ..write(obj.isCallTypeIncomingAccepted)
+      ..writeByte(4)
+      ..write(obj.isCallTypeOutgoingAccepted)
+      ..writeByte(5)
+      ..write(obj.isCallTypeMissedAccepted)
+      ..writeByte(6)
+      ..write(obj.isCallTypeRejectedAccepted)
+      ..writeByte(7)
+      ..write(obj.isCallTypeBlockedAccepted);
   }
 
   @override
@@ -50,10 +65,20 @@ _$_FilterContainer _$$_FilterContainerFromJson(Map<String, dynamic> json) => _$_
       minDuration: json['minDuration'] as int,
       startDate: json['startDate'] == null ? null : DateTime.parse(json['startDate'] as String),
       endDate: json['endDate'] == null ? null : DateTime.parse(json['endDate'] as String),
+      isCallTypeIncomingAccepted: json['isCallTypeIncomingAccepted'] as bool,
+      isCallTypeOutgoingAccepted: json['isCallTypeOutgoingAccepted'] as bool,
+      isCallTypeMissedAccepted: json['isCallTypeMissedAccepted'] as bool,
+      isCallTypeRejectedAccepted: json['isCallTypeRejectedAccepted'] as bool,
+      isCallTypeBlockedAccepted: json['isCallTypeBlockedAccepted'] as bool,
     );
 
 Map<String, dynamic> _$$_FilterContainerToJson(_$_FilterContainer instance) => <String, dynamic>{
       'minDuration': instance.minDuration,
       'startDate': instance.startDate?.toIso8601String(),
       'endDate': instance.endDate?.toIso8601String(),
+      'isCallTypeIncomingAccepted': instance.isCallTypeIncomingAccepted,
+      'isCallTypeOutgoingAccepted': instance.isCallTypeOutgoingAccepted,
+      'isCallTypeMissedAccepted': instance.isCallTypeMissedAccepted,
+      'isCallTypeRejectedAccepted': instance.isCallTypeRejectedAccepted,
+      'isCallTypeBlockedAccepted': instance.isCallTypeBlockedAccepted,
     };

@@ -7,5 +7,10 @@
     "filterScreenName": "Filtro",
     "startDateAfterEndDateError": "La fecha de inicio debe ser anterior a la fecha final",
     "endDateBeforeEndDateError": "La fecha final debe ser posterior a la fecha inicial",
-    "menuSectionTextLicenses": "Licencias"
+    "menuSectionTextLicenses": "Licencias",
+    "filterIsCallTypeIncomingAccepted": "Llamadas entrantes",
+    "filterIsCallTypeOutgoingAccepted": "Llamadas salientes",
+    "filterIsCallTypeMissedAccepted": "Llamadas perdidas",
+    "filterIsCallTypeRejectedAccepted": "Llamadas rechazadas",
+    "filterIsCallTypeBlockedAccepted": "Llamadas bloqueadas"
 }

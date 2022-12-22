@@ -119,15 +119,28 @@ class _LogsScreenState extends State<LogsScreen> {
       dateTo: filterContainer.endDate != null ? filterContainer.endDate!.millisecondsSinceEpoch : null,
       durationFrom: filterContainer.minDuration * 60,
     ).then((Iterable<CallLogEntry> callLogEntries) {
-      List<CallLogEntry> callLogEntryList = callLogEntries.where((e) => _isCallLogEntryValidByFilters(e, filterProvider)).toList(); // Apply filters
+      List<CallLogEntry> callLogEntryList = callLogEntries.where((e) => _isCallLogEntryValidByFilters(e, filterProvider.filterContainer)).toList(); // Apply filters
       callLogEntryList.sort((a, b) => _compareByTimestamp(a, b)); // Sort by date
       return callLogEntryList.map((e) => _convertCallLogEntriesToCallLogListRows(e)).toList(); // Convert to CallLogRow
     }).catchError((error) => []); // TODO handle error
   }
 
   /// This additional filter method is needed, because the CallLogs.query method does not provide all filter possibilities.
-  bool _isCallLogEntryValidByFilters(CallLogEntry callLogEntrie, FilterProvider filterProvider) {
-    return true; // TODO implement
+  bool _isCallLogEntryValidByFilters(CallLogEntry callLogEntry, FilterContainer filterContainer) {
+    switch (callLogEntry.callType) {
+      case CallType.incoming:
+        return filterContainer.isCallTypeIncomingAccepted;
+      case CallType.outgoing:
+        return filterContainer.isCallTypeOutgoingAccepted;
+      case CallType.missed:
+        return filterContainer.isCallTypeMissedAccepted;
+      case CallType.rejected:
+        return filterContainer.isCallTypeRejectedAccepted;
+      case CallType.blocked:
+        return filterContainer.isCallTypeBlockedAccepted;
+      default:
+        return false;
+    }
   }
 
   CallLogListRow _convertCallLogEntriesToCallLogListRows(CallLogEntry callLogEntry) {

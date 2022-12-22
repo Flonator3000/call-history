@@ -34,5 +34,26 @@
        "menuSectionTextLicenses": "Licenses",
        "@menuSectionTextLicenses":{
           "description": "Licenses"
-       }
+       },
+       "filterIsCallTypeIncomingAccepted": "Incoming calls",
+      "@filterIsCallTypeIncomingAccepted":{
+         "description": "Incoming calls"
+      },
+      "filterIsCallTypeOutgoingAccepted": "Outgoing calls",
+     "@filterIsCallTypeOutgoingAccepted":{
+        "description": "Outgoing calls"
+     },
+        "filterIsCallTypeMissedAccepted": "Missed calls",
+       "@filterIsCallTypeMissedAccepted":{
+          "description": "Outgoing calls"
+       },
+       "filterIsCallTypeRejectedAccepted": "Rejected calls",
+      "@filterIsCallTypeRejectedAccepted":{
+         "description": "Rejected calls"
+      },
+      "filterIsCallTypeBlockedAccepted": "Blocked calls",
+     "@filterIsCallTypeBlockedAccepted":{
+        "description": "Blocked calls"
+     }
+
 }

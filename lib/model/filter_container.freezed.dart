@@ -28,6 +28,21 @@ mixin _$FilterContainer {
   @HiveField(2)
   DateTime? get endDate => throw _privateConstructorUsedError;
 
+  @HiveField(3)
+  bool get isCallTypeIncomingAccepted => throw _privateConstructorUsedError;
+
+  @HiveField(4)
+  bool get isCallTypeOutgoingAccepted => throw _privateConstructorUsedError;
+
+  @HiveField(5)
+  bool get isCallTypeMissedAccepted => throw _privateConstructorUsedError;
+
+  @HiveField(6)
+  bool get isCallTypeRejectedAccepted => throw _privateConstructorUsedError;
+
+  @HiveField(7)
+  bool get isCallTypeBlockedAccepted => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -39,7 +54,7 @@ abstract class $FilterContainerCopyWith<$Res> {
   factory $FilterContainerCopyWith(FilterContainer value, $Res Function(FilterContainer) then) = _$FilterContainerCopyWithImpl<$Res, FilterContainer>;
 
   @useResult
-  $Res call({@HiveField(0) int minDuration, @HiveField(1) DateTime? startDate, @HiveField(2) DateTime? endDate});
+  $Res call({@HiveField(0) int minDuration, @HiveField(1) DateTime? startDate, @HiveField(2) DateTime? endDate, @HiveField(3) bool isCallTypeIncomingAccepted, @HiveField(4) bool isCallTypeOutgoingAccepted, @HiveField(5) bool isCallTypeMissedAccepted, @HiveField(6) bool isCallTypeRejectedAccepted, @HiveField(7) bool isCallTypeBlockedAccepted});
 }
 
 /// @nodoc
@@ -58,6 +73,11 @@ class _$FilterContainerCopyWithImpl<$Res, $Val extends FilterContainer> implemen
     Object? minDuration = null,
     Object? startDate = freezed,
     Object? endDate = freezed,
+    Object? isCallTypeIncomingAccepted = null,
+    Object? isCallTypeOutgoingAccepted = null,
+    Object? isCallTypeMissedAccepted = null,
+    Object? isCallTypeRejectedAccepted = null,
+    Object? isCallTypeBlockedAccepted = null,
   }) {
     return _then(_value.copyWith(
       minDuration: null == minDuration
@@ -72,6 +92,26 @@ class _$FilterContainerCopyWithImpl<$Res, $Val extends FilterContainer> implemen
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      isCallTypeIncomingAccepted: null == isCallTypeIncomingAccepted
+          ? _value.isCallTypeIncomingAccepted
+          : isCallTypeIncomingAccepted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isCallTypeOutgoingAccepted: null == isCallTypeOutgoingAccepted
+          ? _value.isCallTypeOutgoingAccepted
+          : isCallTypeOutgoingAccepted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isCallTypeMissedAccepted: null == isCallTypeMissedAccepted
+          ? _value.isCallTypeMissedAccepted
+          : isCallTypeMissedAccepted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isCallTypeRejectedAccepted: null == isCallTypeRejectedAccepted
+          ? _value.isCallTypeRejectedAccepted
+          : isCallTypeRejectedAccepted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isCallTypeBlockedAccepted: null == isCallTypeBlockedAccepted
+          ? _value.isCallTypeBlockedAccepted
+          : isCallTypeBlockedAccepted // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -82,7 +122,7 @@ abstract class _$$_FilterContainerCopyWith<$Res> implements $FilterContainerCopy
 
   @override
   @useResult
-  $Res call({@HiveField(0) int minDuration, @HiveField(1) DateTime? startDate, @HiveField(2) DateTime? endDate});
+  $Res call({@HiveField(0) int minDuration, @HiveField(1) DateTime? startDate, @HiveField(2) DateTime? endDate, @HiveField(3) bool isCallTypeIncomingAccepted, @HiveField(4) bool isCallTypeOutgoingAccepted, @HiveField(5) bool isCallTypeMissedAccepted, @HiveField(6) bool isCallTypeRejectedAccepted, @HiveField(7) bool isCallTypeBlockedAccepted});
 }
 
 /// @nodoc
@@ -95,6 +135,11 @@ class __$$_FilterContainerCopyWithImpl<$Res> extends _$FilterContainerCopyWithIm
     Object? minDuration = null,
     Object? startDate = freezed,
     Object? endDate = freezed,
+    Object? isCallTypeIncomingAccepted = null,
+    Object? isCallTypeOutgoingAccepted = null,
+    Object? isCallTypeMissedAccepted = null,
+    Object? isCallTypeRejectedAccepted = null,
+    Object? isCallTypeBlockedAccepted = null,
   }) {
     return _then(_$_FilterContainer(
       minDuration: null == minDuration
@@ -109,6 +154,26 @@ class __$$_FilterContainerCopyWithImpl<$Res> extends _$FilterContainerCopyWithIm
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      isCallTypeIncomingAccepted: null == isCallTypeIncomingAccepted
+          ? _value.isCallTypeIncomingAccepted
+          : isCallTypeIncomingAccepted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isCallTypeOutgoingAccepted: null == isCallTypeOutgoingAccepted
+          ? _value.isCallTypeOutgoingAccepted
+          : isCallTypeOutgoingAccepted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isCallTypeMissedAccepted: null == isCallTypeMissedAccepted
+          ? _value.isCallTypeMissedAccepted
+          : isCallTypeMissedAccepted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isCallTypeRejectedAccepted: null == isCallTypeRejectedAccepted
+          ? _value.isCallTypeRejectedAccepted
+          : isCallTypeRejectedAccepted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isCallTypeBlockedAccepted: null == isCallTypeBlockedAccepted
+          ? _value.isCallTypeBlockedAccepted
+          : isCallTypeBlockedAccepted // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -117,7 +182,7 @@ class __$$_FilterContainerCopyWithImpl<$Res> extends _$FilterContainerCopyWithIm
 @JsonSerializable()
 @HiveType(typeId: HiveTypeIds.FILTER_CONTAINER, adapterName: AdapterNames.FILTER_CONTAINER_ADAPTER_NAME)
 class _$_FilterContainer implements _FilterContainer {
-  const _$_FilterContainer({@HiveField(0) required this.minDuration, @HiveField(1) this.startDate, @HiveField(2) this.endDate});
+  const _$_FilterContainer({@HiveField(0) required this.minDuration, @HiveField(1) this.startDate, @HiveField(2) this.endDate, @HiveField(3) required this.isCallTypeIncomingAccepted, @HiveField(4) required this.isCallTypeOutgoingAccepted, @HiveField(5) required this.isCallTypeMissedAccepted, @HiveField(6) required this.isCallTypeRejectedAccepted, @HiveField(7) required this.isCallTypeBlockedAccepted});
 
   factory _$_FilterContainer.fromJson(Map<String, dynamic> json) => _$$_FilterContainerFromJson(json);
 
@@ -130,20 +195,35 @@ class _$_FilterContainer implements _FilterContainer {
   @override
   @HiveField(2)
   final DateTime? endDate;
+  @override
+  @HiveField(3)
+  final bool isCallTypeIncomingAccepted;
+  @override
+  @HiveField(4)
+  final bool isCallTypeOutgoingAccepted;
+  @override
+  @HiveField(5)
+  final bool isCallTypeMissedAccepted;
+  @override
+  @HiveField(6)
+  final bool isCallTypeRejectedAccepted;
+  @override
+  @HiveField(7)
+  final bool isCallTypeBlockedAccepted;
 
   @override
   String toString() {
-    return 'FilterContainer(minDuration: $minDuration, startDate: $startDate, endDate: $endDate)';
+    return 'FilterContainer(minDuration: $minDuration, startDate: $startDate, endDate: $endDate, isCallTypeIncomingAccepted: $isCallTypeIncomingAccepted, isCallTypeOutgoingAccepted: $isCallTypeOutgoingAccepted, isCallTypeMissedAccepted: $isCallTypeMissedAccepted, isCallTypeRejectedAccepted: $isCallTypeRejectedAccepted, isCallTypeBlockedAccepted: $isCallTypeBlockedAccepted)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other.runtimeType == runtimeType && other is _$_FilterContainer && (identical(other.minDuration, minDuration) || other.minDuration == minDuration) && (identical(other.startDate, startDate) || other.startDate == startDate) && (identical(other.endDate, endDate) || other.endDate == endDate));
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$_FilterContainer && (identical(other.minDuration, minDuration) || other.minDuration == minDuration) && (identical(other.startDate, startDate) || other.startDate == startDate) && (identical(other.endDate, endDate) || other.endDate == endDate) && (identical(other.isCallTypeIncomingAccepted, isCallTypeIncomingAccepted) || other.isCallTypeIncomingAccepted == isCallTypeIncomingAccepted) && (identical(other.isCallTypeOutgoingAccepted, isCallTypeOutgoingAccepted) || other.isCallTypeOutgoingAccepted == isCallTypeOutgoingAccepted) && (identical(other.isCallTypeMissedAccepted, isCallTypeMissedAccepted) || other.isCallTypeMissedAccepted == isCallTypeMissedAccepted) && (identical(other.isCallTypeRejectedAccepted, isCallTypeRejectedAccepted) || other.isCallTypeRejectedAccepted == isCallTypeRejectedAccepted) && (identical(other.isCallTypeBlockedAccepted, isCallTypeBlockedAccepted) || other.isCallTypeBlockedAccepted == isCallTypeBlockedAccepted));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, minDuration, startDate, endDate);
+  int get hashCode => Object.hash(runtimeType, minDuration, startDate, endDate, isCallTypeIncomingAccepted, isCallTypeOutgoingAccepted, isCallTypeMissedAccepted, isCallTypeRejectedAccepted, isCallTypeBlockedAccepted);
 
   @JsonKey(ignore: true)
   @override
@@ -159,7 +239,7 @@ class _$_FilterContainer implements _FilterContainer {
 }
 
 abstract class _FilterContainer implements FilterContainer {
-  const factory _FilterContainer({@HiveField(0) required final int minDuration, @HiveField(1) final DateTime? startDate, @HiveField(2) final DateTime? endDate}) = _$_FilterContainer;
+  const factory _FilterContainer({@HiveField(0) required final int minDuration, @HiveField(1) final DateTime? startDate, @HiveField(2) final DateTime? endDate, @HiveField(3) required final bool isCallTypeIncomingAccepted, @HiveField(4) required final bool isCallTypeOutgoingAccepted, @HiveField(5) required final bool isCallTypeMissedAccepted, @HiveField(6) required final bool isCallTypeRejectedAccepted, @HiveField(7) required final bool isCallTypeBlockedAccepted}) = _$_FilterContainer;
 
   factory _FilterContainer.fromJson(Map<String, dynamic> json) = _$_FilterContainer.fromJson;
 
@@ -174,6 +254,26 @@ abstract class _FilterContainer implements FilterContainer {
   @override
   @HiveField(2)
   DateTime? get endDate;
+
+  @override
+  @HiveField(3)
+  bool get isCallTypeIncomingAccepted;
+
+  @override
+  @HiveField(4)
+  bool get isCallTypeOutgoingAccepted;
+
+  @override
+  @HiveField(5)
+  bool get isCallTypeMissedAccepted;
+
+  @override
+  @HiveField(6)
+  bool get isCallTypeRejectedAccepted;
+
+  @override
+  @HiveField(7)
+  bool get isCallTypeBlockedAccepted;
 
   @override
   @JsonKey(ignore: true)

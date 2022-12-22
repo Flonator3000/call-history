@@ -7,5 +7,10 @@
     "filterScreenName": "Φίλτρο",
     "startDateAfterEndDateError": "Η ημερομηνία έναρξης πρέπει να είναι πριν από την ημερομηνία λήξης",
     "endDateBeforeEndDateError": "Η ημερομηνία λήξης πρέπει να είναι μετά την ημερομηνία έναρξης",
-    "menuSectionTextLicenses": "Άδειες χρήσης"
+    "menuSectionTextLicenses": "Άδειες χρήσης",
+    "filterIsCallTypeIncomingAccepted": "Εισερχόμενες κλήσεις",
+    "filterIsCallTypeOutgoingAccepted": "Εξερχόμενες κλήσεις",
+    "filterIsCallTypeMissedAccepted": "Αναπάντητες κλήσεις",
+    "filterIsCallTypeRejectedAccepted": "Απορριφθείσες κλήσεις",
+    "filterIsCallTypeBlockedAccepted": "Αποκλεισμένες κλήσεις"
 }
