@@ -53,14 +53,10 @@ class _LogsScreenState extends State<LogsScreen> {
           child: Consumer<FilterProvider>(
             builder: (context, filterProvider, _) {
               return FutureBuilder(
-                future: CallLog.query(
-                  dateFrom: filterProvider.startDate != null ? filterProvider.startDate!.millisecondsSinceEpoch : null,
-                  dateTo: filterProvider.endDate != null ? filterProvider.endDate!.millisecondsSinceEpoch : null,
-                  durationFrom: filterProvider.minDuration * 60,
-                ),
+                future: _getCallLogsFuture(filterProvider),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.hasData) {
-                    List<CallLogListRow> callLogListRows = _getCallLogListRows(snapshot);
+                    List<CallLogListRow> callLogListRows = snapshot.data;
                     return ListView.builder(
                       itemCount: callLogListRows.length,
                       itemBuilder: (context, index) {
@@ -70,7 +66,7 @@ class _LogsScreenState extends State<LogsScreen> {
                   } else if (snapshot.hasError) {
                     return Text('Error: ${snapshot.error}');
                   } else {
-                    return const CircularProgressIndicator();
+                    return Container();
                   }
                 },
               );
@@ -79,22 +75,6 @@ class _LogsScreenState extends State<LogsScreen> {
         ),
       ),
     );
-  }
-
-  List<CallLogListRow> _getCallLogListRows(AsyncSnapshot snapshot) {
-    List<CallLogEntry> data = snapshot.data.toList();
-    List<CallLogListRow> listRows = data.map((entry) => CallLogListRow(callLogEntry: entry)).toList();
-    listRows.sort((a, b) {
-      int? aTimestamp = a.callLogEntry.timestamp;
-      int? bTimestamp = b.callLogEntry.timestamp;
-      if (aTimestamp == null) {
-        return -1;
-      } else if (bTimestamp == null) {
-        return 1;
-      }
-      return aTimestamp.compareTo(bTimestamp);
-    });
-    return listRows;
   }
 
   List<PopupMenuItem<MenuSections>> _buildMenuSection(AppLocalizations appLocalizations) {
@@ -129,5 +109,35 @@ class _LogsScreenState extends State<LogsScreen> {
         );
         break;
     }
+  }
+
+  Future<List<CallLogListRow>> _getCallLogsFuture(FilterProvider filterProvider) {
+    return CallLog.query(
+      dateFrom: filterProvider.startDate != null ? filterProvider.startDate!.millisecondsSinceEpoch : null,
+      dateTo: filterProvider.endDate != null ? filterProvider.endDate!.millisecondsSinceEpoch : null,
+      durationFrom: filterProvider.minDuration * 60,
+    ).then((Iterable<CallLogEntry> callLogEntries) {
+      List<CallLogEntry> callLogEntryList = callLogEntries.where((e) => _isCallLogEntryValidByFilters(e, filterProvider)).toList(); // Apply filters
+      callLogEntryList.sort((a, b) => _compareByTimestamp(a, b)); // Sort by date
+      return callLogEntryList.map((e) => _convertCallLogEntriesToCallLogListRows(e)).toList(); // Convert to CallLogRow
+    }).catchError((error) => []);
+  }
+
+  /// This additional filter method is needed, because the CallLogs.query method does not provide all filter possibilities.
+  bool _isCallLogEntryValidByFilters(CallLogEntry callLogEntrie, FilterProvider filterProvider) {
+    return true; // TODO implement
+  }
+
+  CallLogListRow _convertCallLogEntriesToCallLogListRows(CallLogEntry callLogEntry) {
+    return CallLogListRow(callLogEntry: callLogEntry);
+  }
+
+  int _compareByTimestamp(CallLogEntry a, CallLogEntry b) {
+    if (a.timestamp == null) {
+      return -1;
+    } else if (b.timestamp == null) {
+      return 1;
+    }
+    return a.timestamp!.compareTo(b.timestamp!);
   }
 }
