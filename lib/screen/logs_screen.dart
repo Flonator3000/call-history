@@ -26,16 +26,16 @@ class _LogsScreenState extends State<LogsScreen> {
     AppBar appBar = AppBar(
       title: Text(appLocalizations.logScreenName),
       actions: [
+        PopupMenuButton<MenuSections>(
+          itemBuilder: (context) => [..._buildMenuSection(appLocalizations)],
+          onSelected: (menuSection) => _onMenuSectionSelected(context, menuSection),
+        ),
         IconButton(
           icon: const Icon(Icons.filter_alt),
           color: Colors.white,
           onPressed: () {
             Navigator.of(context).pushNamed(FilterScreen.routeName);
           },
-        ),
-        PopupMenuButton<MenuSections>(
-          itemBuilder: (context) => [..._buildMenuSection(appLocalizations)],
-          onSelected: (menuSection) => _onMenuSectionSelected(context, menuSection),
         ),
       ],
     );
