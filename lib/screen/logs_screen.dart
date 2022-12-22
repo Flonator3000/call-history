@@ -83,7 +83,18 @@ class _LogsScreenState extends State<LogsScreen> {
 
   List<CallLogListRow> _getCallLogListRows(AsyncSnapshot snapshot) {
     List<CallLogEntry> data = snapshot.data.toList();
-    return data.map((entry) => CallLogListRow(callLogEntry: entry)).toList();
+    List<CallLogListRow> listRows = data.map((entry) => CallLogListRow(callLogEntry: entry)).toList();
+    listRows.sort((a, b) {
+      int? aTimestamp = a.callLogEntry.timestamp;
+      int? bTimestamp = b.callLogEntry.timestamp;
+      if (aTimestamp == null) {
+        return -1;
+      } else if (bTimestamp == null) {
+        return 1;
+      }
+      return aTimestamp.compareTo(bTimestamp);
+    });
+    return listRows;
   }
 
   List<PopupMenuItem<MenuSections>> _buildMenuSection(AppLocalizations appLocalizations) {
