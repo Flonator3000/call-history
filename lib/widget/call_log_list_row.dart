@@ -32,53 +32,61 @@ class CallLogListRow extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.all(mediaQueryUtil.height(0.025)),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  callLogEntry.name != null ? callLogEntry.name! : appLocalizations.unknownCallerName,
-                  style: const TextStyle(color: AppColors.mainTextColor, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(height: mediaQueryUtil.height(0.01)),
-                Text(
-                  callLogEntry.formattedNumber != null ? callLogEntry.formattedNumber! : callLogEntry.number!,
-                  style: const TextStyle(color: AppColors.mainTextColor),
-                ),
-              ],
-            ),
-            Column(
-              children: [
-                SizedBox(
-                  height: mediaQueryUtil.height(0.007),
-                ),
-                Text(
-                  callLogEntry.timestamp != null ? DateFormat('dd-MM-yyyy').format(DateTime.fromMillisecondsSinceEpoch(callLogEntry.timestamp!)) : '',
-                  style: const TextStyle(
-                    color: AppColors.mainTextColor,
-                    fontStyle: FontStyle.italic,
+            SizedBox(
+              width: mediaQueryUtil.width(0.4),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    callLogEntry.name != null ? callLogEntry.name! : appLocalizations.unknownCallerName,
+                    style: const TextStyle(color: AppColors.mainTextColor, fontWeight: FontWeight.bold),
                   ),
-                ),
-                SizedBox(
-                  height: mediaQueryUtil.height(0.01),
-                ),
-                Text(
-                  callLogEntry.timestamp != null ? DateFormat('HH:mm').format(DateTime.fromMillisecondsSinceEpoch(callLogEntry.timestamp!)) : '',
-                  style: const TextStyle(
-                    color: AppColors.mainTextColor,
-                    fontStyle: FontStyle.italic,
+                  SizedBox(height: mediaQueryUtil.height(0.01)),
+                  Text(
+                    callLogEntry.formattedNumber != null ? callLogEntry.formattedNumber! : callLogEntry.number!,
+                    style: const TextStyle(color: AppColors.mainTextColor),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-            Column(
-              children: [
-                Text(
-                  _getDurationText(callLogEntry.duration!),
-                  style: const TextStyle(color: AppColors.mainTextColor),
-                ),
-              ],
+            SizedBox(
+              width: mediaQueryUtil.width(0.25),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    callLogEntry.timestamp != null ? DateFormat('dd-MM-yyyy').format(DateTime.fromMillisecondsSinceEpoch(callLogEntry.timestamp!)) : '',
+                    style: const TextStyle(
+                      color: AppColors.mainTextColor,
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                  SizedBox(
+                    height: mediaQueryUtil.height(0.01),
+                  ),
+                  Text(
+                    callLogEntry.timestamp != null ? DateFormat('HH:mm').format(DateTime.fromMillisecondsSinceEpoch(callLogEntry.timestamp!)) : '',
+                    style: const TextStyle(
+                      color: AppColors.mainTextColor,
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              width: mediaQueryUtil.width(0.2),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    _getDurationText(callLogEntry.duration!),
+                    style: const TextStyle(color: AppColors.mainTextColor),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -89,7 +97,7 @@ class CallLogListRow extends StatelessWidget {
   String _getDurationText(int duration) {
     String durationText = "";
     int mins = (duration / 60).floor();
-    if(mins != 0) {
+    if (mins != 0) {
       durationText = "${mins}min ";
     }
     durationText = '$durationText${duration % 60}s';
