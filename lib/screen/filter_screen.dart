@@ -70,7 +70,7 @@ class _FilterScreenState extends State<FilterScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
-                width: mediaQueryUtil.width(0.25),
+                width: mediaQueryUtil.width(0.16),
                 height: mediaQueryUtil.height(0.06),
                 child: TextField(
                   controller: _minController,
@@ -111,36 +111,39 @@ class _FilterScreenState extends State<FilterScreen> {
             style: const TextStyle(color: Colors.black),
           ),
         ),
-        Row(
-          children: [
-            ElevatedButton(
-              onPressed: () async {
-                DateTime? newDate = await showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime(1900), lastDate: DateTime(2100));
-                if (newDate == null) {
-                  // cancel pressed
-                  return;
-                }
-                if (filterProvider.filterContainer.endDate != null && newDate.isAfter(filterProvider.filterContainer.endDate!)) {
-                  Fluttertoast.showToast(
-                    msg: appLocalizations.startDateAfterEndDateError,
-                    fontSize: 16,
-                    toastLength: Toast.LENGTH_LONG,
-                  );
-                  filterProvider.update(filterProvider.filterContainer.copyWith(startDate: null));
-                  return;
-                }
-                filterProvider.update(filterProvider.filterContainer.copyWith(startDate: newDate));
-              },
-              child: Text(filterProvider.filterContainer.startDate != null ? DateFormat('dd.MM.yyyy').format(filterProvider.filterContainer.startDate!) : '-'),
-            ),
-            if (filterProvider.filterContainer.startDate != null)
-              IconButton(
-                onPressed: () {
-                  filterProvider.update(filterProvider.filterContainer.copyWith(startDate: null));
+        Expanded(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              ElevatedButton(
+                onPressed: () async {
+                  DateTime? newDate = await showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime(1900), lastDate: DateTime(2100));
+                  if (newDate == null) {
+                    // cancel pressed
+                    return;
+                  }
+                  if (filterProvider.filterContainer.endDate != null && newDate.isAfter(filterProvider.filterContainer.endDate!)) {
+                    Fluttertoast.showToast(
+                      msg: appLocalizations.startDateAfterEndDateError,
+                      fontSize: 16,
+                      toastLength: Toast.LENGTH_LONG,
+                    );
+                    filterProvider.update(filterProvider.filterContainer.copyWith(startDate: null));
+                    return;
+                  }
+                  filterProvider.update(filterProvider.filterContainer.copyWith(startDate: newDate));
                 },
-                icon: const Icon(Icons.remove_circle_outline_outlined),
+                child: Text(filterProvider.filterContainer.startDate != null ? DateFormat('dd.MM.yyyy').format(filterProvider.filterContainer.startDate!) : '-'),
               ),
-          ],
+              if (filterProvider.filterContainer.startDate != null)
+                IconButton(
+                  onPressed: () {
+                    filterProvider.update(filterProvider.filterContainer.copyWith(startDate: null));
+                  },
+                  icon: const Icon(Icons.remove_circle_outline_outlined),
+                ),
+            ],
+          ),
         ),
       ],
     );
@@ -156,36 +159,39 @@ class _FilterScreenState extends State<FilterScreen> {
             style: const TextStyle(color: AppColors.mainTextColor),
           ),
         ),
-        Row(
-          children: [
-            ElevatedButton(
-              onPressed: () async {
-                DateTime? newDate = await showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime(1900), lastDate: DateTime(2100));
-                if (newDate == null) {
-                  // cancel pressed
-                  return;
-                }
-                if (filterProvider.filterContainer.startDate != null && newDate.isBefore(filterProvider.filterContainer.startDate!)) {
-                  Fluttertoast.showToast(
-                    msg: appLocalizations.endDateBeforeEndDateError,
-                    fontSize: 16,
-                    toastLength: Toast.LENGTH_LONG,
-                  );
-                  filterProvider.update(filterProvider.filterContainer.copyWith(endDate: null));
-                  return;
-                }
-                filterProvider.update(filterProvider.filterContainer.copyWith(endDate: newDate));
-              },
-              child: Text(filterProvider.filterContainer.endDate != null ? DateFormat('dd.MM.yyyy').format(filterProvider.filterContainer.endDate!) : '-'),
-            ),
-            if (filterProvider.filterContainer.endDate != null)
-              IconButton(
-                onPressed: () {
-                  filterProvider.update(filterProvider.filterContainer.copyWith(endDate: null));
+        Expanded(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              ElevatedButton(
+                onPressed: () async {
+                  DateTime? newDate = await showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime(1900), lastDate: DateTime(2100));
+                  if (newDate == null) {
+                    // cancel pressed
+                    return;
+                  }
+                  if (filterProvider.filterContainer.startDate != null && newDate.isBefore(filterProvider.filterContainer.startDate!)) {
+                    Fluttertoast.showToast(
+                      msg: appLocalizations.endDateBeforeEndDateError,
+                      fontSize: 16,
+                      toastLength: Toast.LENGTH_LONG,
+                    );
+                    filterProvider.update(filterProvider.filterContainer.copyWith(endDate: null));
+                    return;
+                  }
+                  filterProvider.update(filterProvider.filterContainer.copyWith(endDate: newDate));
                 },
-                icon: const Icon(Icons.remove_circle_outline_outlined),
+                child: Text(filterProvider.filterContainer.endDate != null ? DateFormat('dd.MM.yyyy').format(filterProvider.filterContainer.endDate!) : '-'),
               ),
-          ],
+              if (filterProvider.filterContainer.endDate != null)
+                IconButton(
+                  onPressed: () {
+                    filterProvider.update(filterProvider.filterContainer.copyWith(endDate: null));
+                  },
+                  icon: const Icon(Icons.remove_circle_outline_outlined),
+                ),
+            ],
+          ),
         ),
       ],
     );
