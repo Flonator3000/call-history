@@ -65,34 +65,37 @@ class _FilterScreenState extends State<FilterScreen> {
             style: const TextStyle(color: Colors.black),
           ),
         ),
-        Row(
-          children: [
-            SizedBox(
-              width: mediaQueryUtil.width(0.17),
-              height: mediaQueryUtil.height(0.08),
-              child: TextField(
-                controller: _minController,
-                style: const TextStyle(fontSize: 20.0, color: Colors.black),
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
+        Expanded(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(
+                width: mediaQueryUtil.width(0.25),
+                height: mediaQueryUtil.height(0.06),
+                child: TextField(
+                  controller: _minController,
+                  style: const TextStyle(fontSize: 20.0, color: Colors.black),
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                  ),
+                  keyboardType: TextInputType.number,
+                  textAlign: TextAlign.end,
+                  textAlignVertical: TextAlignVertical.top,
+                  onSubmitted: (text) {
+                    int parsed = int.tryParse(text) ?? 0;
+                    filterProvider.update(filterProvider.filterContainer.copyWith(minDuration: parsed));
+                  },
                 ),
-                keyboardType: TextInputType.number,
-                textAlign: TextAlign.end,
-                textAlignVertical: TextAlignVertical.top,
-                onSubmitted: (text) {
-                  int parsed = int.tryParse(text) ?? 0;
-                  filterProvider.update(filterProvider.filterContainer.copyWith(minDuration: parsed));
-                },
               ),
-            ),
-            if (filterProvider.filterContainer.minDuration != 0)
-              IconButton(
-                onPressed: () {
-                  filterProvider.update(filterProvider.filterContainer.copyWith(minDuration: 0));
-                },
-                icon: const Icon(Icons.remove_circle_outline_outlined),
-              ),
-          ],
+              if (filterProvider.filterContainer.minDuration != 0)
+                IconButton(
+                  onPressed: () {
+                    filterProvider.update(filterProvider.filterContainer.copyWith(minDuration: 0));
+                  },
+                  icon: const Icon(Icons.remove_circle_outline_outlined),
+                ),
+            ],
+          ),
         ),
       ],
     );
@@ -201,7 +204,7 @@ class _FilterScreenState extends State<FilterScreen> {
       Row(
         children: [
           SizedBox(
-            width: mediaQueryUtil.width(0.55),
+            width: mediaQueryUtil.width(0.75),
             child: Text(
               appLocalizations.filterIsCallTypeIncomingAccepted,
               style: const TextStyle(color: AppColors.mainTextColor),
@@ -218,7 +221,7 @@ class _FilterScreenState extends State<FilterScreen> {
       Row(
         children: [
           SizedBox(
-            width: mediaQueryUtil.width(0.55),
+            width: mediaQueryUtil.width(0.75),
             child: Text(
               appLocalizations.filterIsCallTypeOutgoingAccepted,
               style: const TextStyle(color: AppColors.mainTextColor),
@@ -235,7 +238,7 @@ class _FilterScreenState extends State<FilterScreen> {
       Row(
         children: [
           SizedBox(
-            width: mediaQueryUtil.width(0.55),
+            width: mediaQueryUtil.width(0.75),
             child: Text(
               appLocalizations.filterIsCallTypeMissedAccepted,
               style: const TextStyle(color: AppColors.mainTextColor),
@@ -252,7 +255,7 @@ class _FilterScreenState extends State<FilterScreen> {
       Row(
         children: [
           SizedBox(
-            width: mediaQueryUtil.width(0.55),
+            width: mediaQueryUtil.width(0.75),
             child: Text(
               appLocalizations.filterIsCallTypeRejectedAccepted,
               style: const TextStyle(color: AppColors.mainTextColor),
@@ -269,7 +272,7 @@ class _FilterScreenState extends State<FilterScreen> {
       Row(
         children: [
           SizedBox(
-            width: mediaQueryUtil.width(0.55),
+            width: mediaQueryUtil.width(0.75),
             child: Text(
               appLocalizations.filterIsCallTypeBlockedAccepted,
               style: const TextStyle(color: AppColors.mainTextColor),
