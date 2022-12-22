@@ -134,10 +134,10 @@ class _LogsScreenState extends State<LogsScreen> {
 
   int _compareByTimestamp(CallLogEntry a, CallLogEntry b) {
     if (a.timestamp == null) {
-      return -1;
-    } else if (b.timestamp == null) {
       return 1;
+    } else if (b.timestamp == null) {
+      return -1;
     }
-    return a.timestamp!.compareTo(b.timestamp!);
+    return b.timestamp!.compareTo(a.timestamp!);
   }
 }
