@@ -24,22 +24,16 @@ mixin _$FilterContainer {
 
   @HiveField(1)
   DateTime? get startDate => throw _privateConstructorUsedError;
-
   @HiveField(2)
   DateTime? get endDate => throw _privateConstructorUsedError;
-
   @HiveField(3)
   bool get isCallTypeIncomingAccepted => throw _privateConstructorUsedError;
-
   @HiveField(4)
   bool get isCallTypeOutgoingAccepted => throw _privateConstructorUsedError;
-
   @HiveField(5)
   bool get isCallTypeMissedAccepted => throw _privateConstructorUsedError;
-
   @HiveField(6)
   bool get isCallTypeRejectedAccepted => throw _privateConstructorUsedError;
-
   @HiveField(7)
   bool get isCallTypeBlockedAccepted => throw _privateConstructorUsedError;
 
@@ -254,19 +248,15 @@ abstract class _FilterContainer implements FilterContainer {
   @override
   @HiveField(2)
   DateTime? get endDate;
-
   @override
   @HiveField(3)
   bool get isCallTypeIncomingAccepted;
-
   @override
   @HiveField(4)
   bool get isCallTypeOutgoingAccepted;
-
   @override
   @HiveField(5)
   bool get isCallTypeMissedAccepted;
-
   @override
   @HiveField(6)
   bool get isCallTypeRejectedAccepted;
