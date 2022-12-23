@@ -9,6 +9,7 @@ import 'package:call_log/call_log.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 class LogsScreen extends StatefulWidget {
   const LogsScreen({Key? key}) : super(key: key);
@@ -18,6 +19,19 @@ class LogsScreen extends StatefulWidget {
 }
 
 class _LogsScreenState extends State<LogsScreen> {
+  final showCaseKey1 = GlobalKey();
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => ShowCaseWidget.of(context).startShowCase([
+        showCaseKey1,
+      ]),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final MediaQueryUtil mediaQueryUtil = MediaQueryUtil.of(context);
@@ -30,12 +44,40 @@ class _LogsScreenState extends State<LogsScreen> {
           itemBuilder: (context) => [..._buildMenuSection(appLocalizations)],
           onSelected: (menuSection) => _onMenuSectionSelected(context, menuSection),
         ),
-        IconButton(
-          icon: const Icon(Icons.filter_alt),
-          color: Colors.white,
-          onPressed: () {
-            Navigator.of(context).pushNamed(FilterScreen.routeName);
-          },
+        Showcase.withWidget(
+          key: showCaseKey1,
+          container: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                width: mediaQueryUtil.width(0.5),
+                height: mediaQueryUtil.height(0.05),
+                decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                  color: AppColors.secondary.shade800,
+                ),
+                child: Center(
+                  child: Text(
+                    appLocalizations.showcaseFilter,
+                    style: const TextStyle(
+                      color: AppColors.mainTextColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          width: mediaQueryUtil.width(0.5),
+          height: mediaQueryUtil.height(0.05),
+          child: IconButton(
+            icon: const Icon(Icons.filter_alt),
+            color: Colors.white,
+            onPressed: () {
+              Navigator.of(context).pushNamed(FilterScreen.routeName);
+            },
+          ),
         ),
       ],
     );

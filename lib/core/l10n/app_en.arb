@@ -74,6 +74,10 @@
         "callTypeBlocked": "blocked",
        "@callTypeBlocked":{
           "description": "blocked"
+       },
+        "showcaseFilter": "Filter your call logs",
+       "@showcaseFilter":{
+          "description": "Filter your call logs"
        }
 
 }

@@ -17,5 +17,6 @@
     "callTypeOutgoing": "الصادرة",
     "callTypeMissed": "مفقود",
     "callTypeRejected": "مرفوض",
-    "callTypeBlocked": "محظور"
+    "callTypeBlocked": "محظور",
+    "showcaseFilter": "تصفية السجل الخاص بك"
 }

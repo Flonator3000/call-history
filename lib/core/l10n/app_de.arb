@@ -17,6 +17,6 @@
     "callTypeOutgoing": "ausgehend",
     "callTypeMissed": "verpasst",
     "callTypeRejected": "abgelehnt",
-    "callTypeBlocked": "blockiert"
-
+    "callTypeBlocked": "blockiert",
+    "showcaseFilter": "Filtere deine Historie"
 }

@@ -17,5 +17,6 @@
     "callTypeOutgoing": "εξερχόμενη",
     "callTypeMissed": "missed",
     "callTypeRejected": "rejected",
-    "callTypeBlocked": "blocked"
+    "callTypeBlocked": "blocked",
+    "showcaseFilter": "Φιλτράρετε το ιστορικό σας"
 }
