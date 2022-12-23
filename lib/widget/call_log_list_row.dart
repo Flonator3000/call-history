@@ -49,14 +49,7 @@ class CallLogListRow extends StatelessWidget {
                     style: const TextStyle(color: AppColors.mainTextColor),
                   ),
                   SizedBox(height: mediaQueryUtil.height(0.01)),
-                  Text(
-                    '(${_getCallTypeTextByCallType(callLogEntry.callType, appLocalizations)})',
-                    style: const TextStyle(
-                      color: AppColors.mainTextColor,
-                      fontSize: 10.0,
-                      fontStyle: FontStyle.italic,
-                    ),
-                  ),
+                  _getCallTypeRowByCallType(callLogEntry.callType, appLocalizations),
                 ],
               ),
             ),
@@ -113,23 +106,81 @@ class CallLogListRow extends StatelessWidget {
     return durationText;
   }
 
-  String _getCallTypeTextByCallType(CallType? callType, AppLocalizations appLocalizations) {
+  Widget _getCallTypeRowByCallType(CallType? callType, AppLocalizations appLocalizations) {
     if (callType == null) {
-      return '';
+      return Container();
     }
     switch (callType) {
       case CallType.incoming:
-        return appLocalizations.callTypeIncoming;
+        return Row(
+          children: [
+            const Icon(Icons.call_received),
+            const SizedBox(
+              width: 3.0,
+            ),
+            Text(
+              appLocalizations.callTypeIncoming,
+              style: const TextStyle(
+                color: AppColors.mainTextColor,
+                fontSize: 10.0,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
+          ],
+        );
       case CallType.outgoing:
-        return appLocalizations.callTypeOutgoing;
+        return Row(
+          children: [
+            const Icon(
+              Icons.call_made,
+              size: 12.0,
+            ),
+            const SizedBox(width: 3.0),
+            Text(
+              appLocalizations.callTypeOutgoing,
+              style: const TextStyle(
+                color: AppColors.mainTextColor,
+                fontSize: 10.0,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
+          ],
+        );
       case CallType.missed:
-        return appLocalizations.callTypeMissed;
+        return Row(
+          children: [
+            const Icon(Icons.call_missed),
+            const SizedBox(width: 3.0),
+            Text(
+              appLocalizations.callTypeMissed,
+              style: const TextStyle(
+                color: AppColors.mainTextColor,
+                fontSize: 10.0,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
+          ],
+        );
       case CallType.rejected:
-        return appLocalizations.callTypeRejected;
+        return Text(
+          appLocalizations.callTypeRejected,
+          style: const TextStyle(
+            color: AppColors.mainTextColor,
+            fontSize: 10.0,
+            fontStyle: FontStyle.italic,
+          ),
+        );
       case CallType.blocked:
-        return appLocalizations.callTypeBlocked;
+        return Text(
+          appLocalizations.callTypeBlocked,
+          style: const TextStyle(
+            color: AppColors.mainTextColor,
+            fontSize: 10.0,
+            fontStyle: FontStyle.italic,
+          ),
+        );
       default:
-        return '';
+        return Container();
     }
   }
 }
