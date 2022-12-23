@@ -23,6 +23,14 @@
      "@filterScreenName":{
         "description": "Filter"
      },
+     "analyzeScreenName": "Analysis",
+      "@analyzeScreenName":{
+         "description": "Analysis"
+      },
+      "exportScreenName": "Export",
+    "@exportScreenName":{
+       "description": "Export"
+    },
        "startDateAfterEndDateError": "Start date must be before end date",
        "@startDateAfterEndDateError":{
           "description": "Start date must be before end date"

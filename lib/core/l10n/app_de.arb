@@ -18,5 +18,7 @@
     "callTypeMissed": "verpasst",
     "callTypeRejected": "abgelehnt",
     "callTypeBlocked": "blockiert",
-    "showcaseFilter": "Filtere deine Historie"
+    "showcaseFilter": "Filtere deine Historie",
+    "analyzeScreenName": "Analyse",
+    "exportScreenName": "Export"
 }

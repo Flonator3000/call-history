@@ -18,5 +18,7 @@
     "callTypeMissed": "مفقود",
     "callTypeRejected": "مرفوض",
     "callTypeBlocked": "محظور",
-    "showcaseFilter": "تصفية السجل الخاص بك"
+    "showcaseFilter": "تصفية السجل الخاص بك",
+    "analysisScreenName": "تحليل",
+    "exportScreenName": "تصدير"
 }

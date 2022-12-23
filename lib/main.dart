@@ -5,7 +5,7 @@ import 'package:call_history/model/filter_container.dart';
 import 'package:call_history/model/hive/box_names.dart';
 import 'package:call_history/provider/FilterProvider.dart';
 import 'package:call_history/screen/filter_screen.dart';
-import 'package:call_history/screen/logs_screen.dart';
+import 'package:call_history/screen/screen_wrapper.dart';
 import 'package:call_history/widget/media_query_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
             theme: appTheme,
             home: ShowCaseWidget(
               builder: Builder(
-                builder: (_) => const LogsScreen(),
+                builder: (_) => ScreenWrapper(),
               ),
             ),
             routes: {

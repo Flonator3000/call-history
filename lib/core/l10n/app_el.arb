@@ -18,5 +18,7 @@
     "callTypeMissed": "missed",
     "callTypeRejected": "rejected",
     "callTypeBlocked": "blocked",
-    "showcaseFilter": "Φιλτράρετε το ιστορικό σας"
+    "showcaseFilter": "Φιλτράρετε το ιστορικό σας",
+    "analyzeScreenName": "Ανάλυση",
+    "exportScreenName": "Εξαγωγή"
 }

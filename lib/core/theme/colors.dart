@@ -4,7 +4,7 @@ class AppColors {
   static const backgroundColor = Colors.white;
 
   static MaterialColor primary = MaterialColor(
-    Colors.purple.value,
+    Colors.indigo.value,
     const <int, Color>{
       50: Color.fromRGBO(230, 230, 250, 0.1),
       100: Color.fromRGBO(230, 230, 250, 0.2),
