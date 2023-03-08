@@ -20,5 +20,10 @@
     "callTypeBlocked": "blocked",
     "showcaseFilter": "Φιλτράρετε το ιστορικό σας",
     "analyzeScreenName": "Ανάλυση",
-    "exportScreenName": "Εξαγωγή"
+    "exportScreenName": "Εξαγωγή",
+    "currentFilterHeadline": "",
+    "currentFilterTimerange": "",
+    "currentFilterCallTypes": "",
+    "currentFilterFrom":"",
+    "currentFilterUntil":""
 }

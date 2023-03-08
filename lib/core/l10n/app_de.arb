@@ -20,5 +20,10 @@
     "callTypeBlocked": "blockiert",
     "showcaseFilter": "Filtere deine Historie",
     "analyzeScreenName": "Analyse",
-    "exportScreenName": "Export"
+    "exportScreenName": "Export",
+    "currentFilterHeadline": "Aktuelle Filter",
+    "currentFilterTimerange": "Zeitspanne",
+    "currentFilterCallTypes": "Typ",
+    "currentFilterFrom":"von",
+    "currentFilterUntil":"bis"
 }

@@ -86,6 +86,26 @@
         "showcaseFilter": "Filter your call logs",
        "@showcaseFilter":{
           "description": "Filter your call logs"
+       },
+        "currentFilterHeadline": "Current filters",
+       "@currentFilterHeadline":{
+          "description": ""
+       },
+        "currentFilterTimerange": "Timerange",
+       "@currentFilterTimerange":{
+          "description": ""
+       },
+        "currentFilterCallTypes": "Call types",
+       "@currentFilterCallTypes":{
+          "description": ""
+       },
+        "currentFilterFrom": "from",
+       "@currentFilterFrom":{
+          "description": ""
+       },
+        "currentFilterUntil": "until",
+       "@currentFilterUntil":{
+          "description": ""
        }
 
 }

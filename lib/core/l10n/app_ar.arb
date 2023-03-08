@@ -20,5 +20,10 @@
     "callTypeBlocked": "محظور",
     "showcaseFilter": "تصفية السجل الخاص بك",
     "analysisScreenName": "تحليل",
-    "exportScreenName": "تصدير"
+    "exportScreenName": "تصدير",
+    "currentFilterHeadline": "",
+    "currentFilterTimerange": "",
+    "currentFilterCallTypes": "",
+    "currentFilterFrom":"",
+    "currentFilterUntil":""
 }
