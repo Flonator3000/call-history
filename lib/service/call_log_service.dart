@@ -1,10 +1,9 @@
 import 'package:call_history/model/filter_container.dart';
 import 'package:call_history/provider/FilterProvider.dart';
-import 'package:call_history/widget/call_log_list_row.dart';
 import 'package:call_log/call_log.dart';
 
 class CallLogService {
-  Future<List<CallLogListRow>> getCallLogsFuture(FilterProvider filterProvider) {
+  Future<List<CallLogEntry>> getCallLogsFuture(FilterProvider filterProvider) {
     FilterContainer filterContainer = filterProvider.filterContainer;
     return CallLog.query(
       dateFrom: filterContainer.startDate != null ? filterContainer.startDate!.millisecondsSinceEpoch : null,
@@ -13,7 +12,7 @@ class CallLogService {
     ).then((Iterable<CallLogEntry> callLogEntries) {
       List<CallLogEntry> callLogEntryList = callLogEntries.where((e) => _isCallLogEntryValidByFilters(e, filterProvider.filterContainer)).toList(); // Apply filters
       callLogEntryList.sort((a, b) => _compareByTimestamp(a, b)); // Sort by date
-      return callLogEntryList.map((e) => _convertCallLogEntriesToCallLogListRows(e)).toList(); // Convert to CallLogRow
+      return callLogEntryList;
     }).catchError((error) => []); // TODO handle error
   }
 
@@ -33,10 +32,6 @@ class CallLogService {
       default:
         return false;
     }
-  }
-
-  CallLogListRow _convertCallLogEntriesToCallLogListRows(CallLogEntry callLogEntry) {
-    return CallLogListRow(callLogEntry: callLogEntry);
   }
 
   int _compareByTimestamp(CallLogEntry a, CallLogEntry b) {

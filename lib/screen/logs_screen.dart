@@ -3,6 +3,7 @@ import 'package:call_history/provider/FilterProvider.dart';
 import 'package:call_history/service/call_log_service.dart';
 import 'package:call_history/widget/call_log_list_row.dart';
 import 'package:call_history/widget/media_query_util.dart';
+import 'package:call_log/call_log.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -28,7 +29,8 @@ class _LogsScreenState extends State<LogsScreen> {
             future: callLogService.getCallLogsFuture(filterProvider),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
-                List<CallLogListRow> callLogListRows = snapshot.data;
+                List<CallLogEntry> callLogEntryList = snapshot.data;
+                List<CallLogListRow> callLogListRows = callLogEntryList.map((e) => _convertCallLogEntriesToCallLogListRows(e)).toList();
                 return ListView.builder(
                   itemCount: callLogListRows.length,
                   itemBuilder: (context, index) {
@@ -47,7 +49,7 @@ class _LogsScreenState extends State<LogsScreen> {
     );
   }
 
-
-
-
+  CallLogListRow _convertCallLogEntriesToCallLogListRows(CallLogEntry callLogEntry) {
+    return CallLogListRow(callLogEntry: callLogEntry);
+  }
 }
