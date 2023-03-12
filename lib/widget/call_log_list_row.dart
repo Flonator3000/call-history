@@ -31,7 +31,7 @@ class CallLogListRow extends StatelessWidget {
         ),
       ),
       child: Padding(
-        padding: EdgeInsets.all(mediaQueryUtil.height(0.025)),
+        padding: EdgeInsets.only(top: mediaQueryUtil.height(0.025), right: mediaQueryUtil.width(0.025), left: mediaQueryUtil.width(0.04)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -105,9 +105,9 @@ class CallLogListRow extends StatelessWidget {
       case CallType.incoming:
         return Row(
           children: [
-            const Icon(Icons.call_received),
-            const SizedBox(
-              width: 3.0,
+            const Icon(
+              Icons.call_received,
+              size: 16.0,
             ),
             Text(
               appLocalizations.callTypeIncoming,
@@ -124,9 +124,8 @@ class CallLogListRow extends StatelessWidget {
           children: [
             const Icon(
               Icons.call_made,
-              size: 12.0,
+              size: 16.0,
             ),
-            const SizedBox(width: 3.0),
             Text(
               appLocalizations.callTypeOutgoing,
               style: const TextStyle(
