@@ -7,14 +7,14 @@ import 'package:call_log/call_log.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class LogsScreen extends StatefulWidget {
-  const LogsScreen({Key? key}) : super(key: key);
+class HistoryScreen extends StatefulWidget {
+  const HistoryScreen({Key? key}) : super(key: key);
 
   @override
-  State<LogsScreen> createState() => _LogsScreenState();
+  State<HistoryScreen> createState() => _HistoryScreenState();
 }
 
-class _LogsScreenState extends State<LogsScreen> {
+class _HistoryScreenState extends State<HistoryScreen> {
   CallLogService callLogService = getIt<CallLogService>();
 
   @override

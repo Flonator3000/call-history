@@ -3,7 +3,7 @@ import 'package:call_history/core/theme/colors.dart';
 import 'package:call_history/screen/analyze_screen.dart';
 import 'package:call_history/screen/export_screen.dart';
 import 'package:call_history/screen/filter_screen.dart';
-import 'package:call_history/screen/logs_screen.dart';
+import 'package:call_history/screen/history_screen.dart';
 import 'package:call_history/widget/media_query_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -20,7 +20,7 @@ class _ScreenWrapperState extends State<ScreenWrapper> {
   int currentBottomNavigationIndex = 0;
   final showCaseKey1 = GlobalKey();
   final screens = [
-    const LogsScreen(),
+    const HistoryScreen(),
     const AnalyzeScreen(),
     const ExportScreen(),
   ];
