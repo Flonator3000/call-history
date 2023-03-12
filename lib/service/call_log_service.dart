@@ -1,16 +1,14 @@
 import 'package:call_history/model/filter_container.dart';
-import 'package:call_history/provider/FilterProvider.dart';
 import 'package:call_log/call_log.dart';
 
 class CallLogService {
-  Future<List<CallLogEntry>> getCallLogsFuture(FilterProvider filterProvider) {
-    FilterContainer filterContainer = filterProvider.filterContainer;
+  Future<List<CallLogEntry>> getCallLogsFuture(FilterContainer filterContainer) {
     return CallLog.query(
       dateFrom: filterContainer.startDate != null ? filterContainer.startDate!.millisecondsSinceEpoch : null,
       dateTo: filterContainer.endDate != null ? filterContainer.endDate!.millisecondsSinceEpoch : null,
       durationFrom: filterContainer.minDuration * 60,
     ).then((Iterable<CallLogEntry> callLogEntries) {
-      List<CallLogEntry> callLogEntryList = callLogEntries.where((e) => _isCallLogEntryValidByFilters(e, filterProvider.filterContainer)).toList(); // Apply filters
+      List<CallLogEntry> callLogEntryList = callLogEntries.where((e) => _isCallLogEntryValidByFilters(e, filterContainer)).toList(); // Apply filters
       callLogEntryList.sort((a, b) => _compareByTimestamp(a, b)); // Sort by date
       return callLogEntryList;
     }).catchError((error) => []); // TODO handle error

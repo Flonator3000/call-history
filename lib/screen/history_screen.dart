@@ -26,7 +26,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
       child: Consumer<FilterProvider>(
         builder: (context, filterProvider, _) {
           return FutureBuilder(
-            future: callLogService.getCallLogsFuture(filterProvider),
+            future: callLogService.getCallLogsFuture(filterProvider.filterContainer),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 List<CallLogEntry> callLogEntryList = snapshot.data;
