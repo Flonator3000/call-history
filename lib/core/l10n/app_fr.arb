@@ -4,7 +4,8 @@
     "endDateInfoText" : "Les appels ont eu lieu avant ou à cette date :",
     "unknownCallerName" : "Inconnu",
     "logScreenName" : "Historique",
-    "filterScreenName" : "Filtre",
+    "filterScreenName": "Filtre",
+    "analyzeScreenName": "Analyse",
     "startDateAfterEndDateError" : "La date de début doit être antérieure à la date de fin",
     "endDateBeforeEndDateError" : "La date de fin doit être postérieure à la date de début",
     "menuSectionTextLicenses" : "Licences",
@@ -25,5 +26,6 @@
     "currentFilterTimerange": "Période",
     "currentFilterCallTypes": "Type",
     "currentFilterFrom":"de",
-    "currentFilterUntil":"à"
+    "currentFilterUntil":"à",
+    "currentFilterLongerThan":"plus de"
 }

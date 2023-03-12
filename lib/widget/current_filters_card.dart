@@ -18,6 +18,7 @@ class CurrentFiltersCard extends StatelessWidget {
     bool isStartDateSet = filterContainer.startDate != null;
     bool isEndDateSet = filterContainer.endDate != null;
     bool isAnyCallTypeSet = filterContainer.isCallTypeIncomingAccepted || filterContainer.isCallTypeOutgoingAccepted;
+    bool isMinDurationSet = filterContainer.minDuration > 0;
 
     return Card(
       color: AppColors.secondary,
@@ -57,6 +58,16 @@ class CurrentFiltersCard extends StatelessWidget {
                 filterContainer.isCallTypeIncomingAccepted ? Text(appLocalizations.callTypeIncoming) : Container(),
                 filterContainer.isCallTypeIncomingAccepted && filterContainer.isCallTypeOutgoingAccepted ? const Text('; ') : Container(),
                 filterContainer.isCallTypeOutgoingAccepted ? Text(appLocalizations.callTypeOutgoing) : Container(),
+              ],
+            ),
+            if (isMinDurationSet) SizedBox(height: mediaQueryUtil.height(0.01)),
+            Row(
+              children: [
+                SizedBox(
+                  width: mediaQueryUtil.width(0.3),
+                  child: Text(appLocalizations.currentFilterLongerThan),
+                ),
+                Text('${filterContainer.minDuration}min'),
               ],
             )
           ],

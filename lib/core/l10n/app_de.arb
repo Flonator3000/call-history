@@ -5,6 +5,7 @@
     "unknownCallerName": "Unbekannt",
     "logScreenName": "Historie",
     "filterScreenName": "Filter",
+    "analyzeScreenName": "Analyse",
     "startDateAfterEndDateError": "Das Anfangsdatum muss vor dem Enddatum liegen",
     "endDateBeforeEndDateError": "Das Enddatum muss nach dem Startdatum liegen",
     "menuSectionTextLicenses": "Lizenzen",
@@ -25,5 +26,6 @@
     "currentFilterTimerange": "Zeitspanne",
     "currentFilterCallTypes": "Typ",
     "currentFilterFrom":"von",
-    "currentFilterUntil":"bis"
+    "currentFilterUntil":"bis",
+    "currentFilterLongerThan":"länger als"
 }

@@ -5,6 +5,7 @@
     "unknownCallerName": "غير معروف",
     "logScreenName": "المحفوظات",
     "filterScreenName": "عامل التصفية",
+    "analyzeScreenName": "تحليل",
     "startDateAfterEndDateError": "يجب أن يكون تاريخ البدء قبل تاريخ الانتهاء",
     "endDateBeforeEndDateError": "يجب أن يكون تاريخ الانتهاء بعد تاريخ البدء",
     "menuSectionTextLicenses": "التراخيص",
@@ -25,5 +26,6 @@
     "currentFilterTimerange": "من",
     "currentFilterCallTypes": "النوع",
     "currentFilterFrom":"الفترة الزمنية",
-    "currentFilterUntil":"المرشحات الحالية"
+    "currentFilterUntil":"المرشحات الحالية",
+    "currentFilterLongerThan":"أطول من"
 }

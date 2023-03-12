@@ -1,5 +1,4 @@
 import 'package:call_history/core/configure_dependencies.dart';
-import 'package:call_history/model/filter_container.dart';
 import 'package:call_history/provider/FilterProvider.dart';
 import 'package:call_history/service/call_log_service.dart';
 import 'package:call_history/widget/current_filters_card.dart';
@@ -25,12 +24,11 @@ class _AnalyzeScreen extends State<AnalyzeScreen> {
 
     return Consumer<FilterProvider>(
       builder: (context, filterProvider, _) {
-        FilterContainer filterContainer = filterProvider.filterContainer.copyWith(minDuration: 0); // minDuration is ignored in analyze screen
         return Column(
           children: [
             SizedBox(
               height: mediaQueryUtil.height(0.140),
-              child: CurrentFiltersCard(filterContainer: filterContainer),
+              child: CurrentFiltersCard(filterContainer: filterProvider.filterContainer),
             ),
             SizedBox(
               height: mediaQueryUtil.height(0.02),
@@ -38,7 +36,7 @@ class _AnalyzeScreen extends State<AnalyzeScreen> {
             SizedBox(
               height: mediaQueryUtil.height(0.68),
               child: FutureBuilder(
-                future: callLogService.getCallLogsFuture(filterContainer),
+                future: callLogService.getCallLogsFuture(filterProvider.filterContainer),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.hasData) {
                     List<CallLogEntry> callLogEntryList = snapshot.data;

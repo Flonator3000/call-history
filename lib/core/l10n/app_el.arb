@@ -5,6 +5,7 @@
     "unknownCallerName": "Άγνωστο",
     "logScreenName": "Ιστορικό",
     "filterScreenName": "Φίλτρο",
+    "analyzeScreenName": "Ανάλυση",
     "startDateAfterEndDateError": "Η ημερομηνία έναρξης πρέπει να είναι πριν από την ημερομηνία λήξης",
     "endDateBeforeEndDateError": "Η ημερομηνία λήξης πρέπει να είναι μετά την ημερομηνία έναρξης",
     "menuSectionTextLicenses": "Άδειες χρήσης",
@@ -25,5 +26,6 @@
     "currentFilterTimerange": "Χρονικό διάστημα",
     "currentFilterCallTypes": "Τύπος",
     "currentFilterFrom":"από",
-    "currentFilterUntil":"μέχρι"
+    "currentFilterUntil":"μέχρι",
+    "currentFilterLongerThan":"Περισσότερο από"
 }
