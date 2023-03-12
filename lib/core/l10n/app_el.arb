@@ -21,9 +21,9 @@
     "showcaseFilter": "Φιλτράρετε το ιστορικό σας",
     "analyzeScreenName": "Ανάλυση",
     "exportScreenName": "Εξαγωγή",
-    "currentFilterHeadline": "",
-    "currentFilterTimerange": "",
-    "currentFilterCallTypes": "",
-    "currentFilterFrom":"",
-    "currentFilterUntil":""
+    "currentFilterHeadline": "Τρέχοντα φίλτρα",
+    "currentFilterTimerange": "Χρονικό διάστημα",
+    "currentFilterCallTypes": "Τύπος",
+    "currentFilterFrom":"από",
+    "currentFilterUntil":"μέχρι"
 }

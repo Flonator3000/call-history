@@ -21,9 +21,9 @@
     "showcaseFilter": "Filtra tu historial",
     "analyzeScreenName": "Análisis",
     "exportScreenName": "Exportar",
-    "currentFilterHeadline": "",
-    "currentFilterTimerange": "",
-    "currentFilterCallTypes": "",
-    "currentFilterFrom":"",
-    "currentFilterUntil":""
+    "currentFilterHeadline": "Filtro actual",
+    "currentFilterTimerange": "Periodo",
+    "currentFilterCallTypes": "Tipo",
+    "currentFilterFrom":"desde",
+    "currentFilterUntil":"hasta"
 }

@@ -21,9 +21,9 @@
     "showcaseFilter": "تصفية السجل الخاص بك",
     "analysisScreenName": "تحليل",
     "exportScreenName": "تصدير",
-    "currentFilterHeadline": "",
-    "currentFilterTimerange": "",
-    "currentFilterCallTypes": "",
-    "currentFilterFrom":"",
-    "currentFilterUntil":""
+    "currentFilterHeadline": "إلى",
+    "currentFilterTimerange": "من",
+    "currentFilterCallTypes": "النوع",
+    "currentFilterFrom":"الفترة الزمنية",
+    "currentFilterUntil":"المرشحات الحالية"
 }
