@@ -105,10 +105,7 @@ class CallLogListRow extends StatelessWidget {
       case CallType.incoming:
         return Row(
           children: [
-            const Icon(
-              Icons.call_received,
-              size: 16.0,
-            ),
+            const Icon(Icons.call_received, size: 16.0),
             Text(
               appLocalizations.callTypeIncoming,
               style: const TextStyle(
@@ -122,10 +119,7 @@ class CallLogListRow extends StatelessWidget {
       case CallType.outgoing:
         return Row(
           children: [
-            const Icon(
-              Icons.call_made,
-              size: 16.0,
-            ),
+            const Icon(Icons.call_made, size: 16.0),
             Text(
               appLocalizations.callTypeOutgoing,
               style: const TextStyle(
@@ -139,7 +133,7 @@ class CallLogListRow extends StatelessWidget {
       case CallType.missed:
         return Row(
           children: [
-            const Icon(Icons.call_missed),
+            const Icon(Icons.call_missed, size: 16.0),
             const SizedBox(width: 3.0),
             Text(
               appLocalizations.callTypeMissed,
