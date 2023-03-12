@@ -1,4 +1,5 @@
 import 'package:call_history/core/theme/colors.dart';
+import 'package:call_history/util/time_utils.dart';
 import 'package:call_history/widget/media_query_util.dart';
 import 'package:call_log/call_log.dart';
 import 'package:flutter/material.dart';
@@ -84,7 +85,7 @@ class CallLogListRow extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    _getDurationText(callLogEntry.duration!),
+                    TimeUtils.convertSecondsToTimeString(callLogEntry.duration!),
                     style: const TextStyle(color: AppColors.mainTextColor),
                   ),
                 ],
@@ -94,16 +95,6 @@ class CallLogListRow extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  String _getDurationText(int duration) {
-    String durationText = "";
-    int mins = (duration / 60).floor();
-    if (mins != 0) {
-      durationText = "${mins}min ";
-    }
-    durationText = '$durationText${duration % 60}s';
-    return durationText;
   }
 
   Widget _getCallTypeRowByCallType(CallType? callType, AppLocalizations appLocalizations) {
