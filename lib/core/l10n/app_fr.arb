@@ -27,5 +27,6 @@
     "currentFilterCallTypes": "Type",
     "currentFilterFrom":"de",
     "currentFilterUntil":"à",
-    "currentFilterLongerThan":"plus de"
+    "currentFilterLongerThan":"plus de",
+    "callParticipantInfoText":"Des appels ont été passés avec ce contact"
 }

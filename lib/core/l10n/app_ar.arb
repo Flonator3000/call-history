@@ -27,5 +27,6 @@
     "currentFilterCallTypes": "النوع",
     "currentFilterFrom":"الفترة الزمنية",
     "currentFilterUntil":"المرشحات الحالية",
-    "currentFilterLongerThan":"أطول من"
+    "currentFilterLongerThan":"أطول من",
+    "callParticipantInfoText":"تم إجراء مكالمات باستخدام هذا الاتصال"
 }

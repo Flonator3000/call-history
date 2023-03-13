@@ -1,6 +1,10 @@
+import 'package:call_history/core/configure_dependencies.dart';
 import 'package:call_history/core/theme/colors.dart';
+import 'package:call_history/model/filter_container.dart';
 import 'package:call_history/provider/FilterProvider.dart';
+import 'package:call_history/service/call_log_service.dart';
 import 'package:call_history/widget/media_query_util.dart';
+import 'package:call_log/call_log.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -17,6 +21,7 @@ class FilterScreen extends StatefulWidget {
 
 class _FilterScreenState extends State<FilterScreen> {
   final _minController = TextEditingController();
+  CallLogService callLogService = getIt<CallLogService>();
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +34,7 @@ class _FilterScreenState extends State<FilterScreen> {
         return shouldPop;
       },
       child: Scaffold(
-          appBar: AppBar(
+        appBar: AppBar(
           title: Text(appLocalizations.filterScreenName),
         ),
         resizeToAvoidBottomInset: false,
@@ -41,6 +46,8 @@ class _FilterScreenState extends State<FilterScreen> {
                 _buildStartDateInput(filterProvider, mediaQueryUtil, appLocalizations),
                 _buildDivider(mediaQueryUtil),
                 _buildEndDateInput(filterProvider, mediaQueryUtil, appLocalizations),
+                _buildDivider(mediaQueryUtil),
+                _buildCallParticipantInput(filterProvider, mediaQueryUtil, appLocalizations),
                 _buildDivider(mediaQueryUtil),
                 _buildMinDurationInput(filterProvider, mediaQueryUtil, appLocalizations),
                 _buildDivider(mediaQueryUtil),
@@ -293,5 +300,80 @@ class _FilterScreenState extends State<FilterScreen> {
         ],
       ),
     ]);
+  }
+
+  _buildCallParticipantInput(FilterProvider filterProvider, MediaQueryUtil mediaQueryUtil, AppLocalizations appLocalizations) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        SizedBox(
+          width: mediaQueryUtil.width(0.50),
+          child: Text(
+            appLocalizations.callParticipantInfoText,
+            style: const TextStyle(color: AppColors.mainTextColor),
+          ),
+        ),
+        SizedBox(
+          width: mediaQueryUtil.width(0.05),
+        ),
+        Expanded(
+          child: FutureBuilder(
+            // Fetch call logs once to get all available call participants.
+            future: callLogService.getCallLogsFuture(
+              // Empty FilterContainer
+              const FilterContainer(
+                minDuration: 0,
+                isCallTypeIncomingAccepted: true,
+                isCallTypeOutgoingAccepted: true,
+                isCallTypeMissedAccepted: true,
+                isCallTypeRejectedAccepted: true,
+                isCallTypeBlockedAccepted: true,
+              ),
+            ),
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              if (snapshot.hasData) {
+                List<CallLogEntry> callLogEntryList = snapshot.data;
+                List<String> callParticipants = [];
+                for (var element in callLogEntryList) {
+                  String contactName = element.name ?? appLocalizations.unknownCallerName;
+                  if (!callParticipants.contains(contactName)) {
+                    callParticipants.add(contactName);
+                  }
+                }
+                callParticipants.sort();
+                List<DropdownMenuItem<String>> items = callParticipants.map((e) => DropdownMenuItem(value: e, child: Text(e))).toList();
+                DropdownButton dropdownButton = DropdownButton(
+                  items: items,
+                  isExpanded: true,
+                  value: filterProvider.filterContainer.callParticipant,
+                  onChanged: (item) {
+                    filterProvider.update(filterProvider.filterContainer.copyWith(callParticipant: item));
+                  },
+                );
+
+                IconButton iconButton = IconButton(
+                  onPressed: () {
+                    filterProvider.update(filterProvider.filterContainer.copyWith(callParticipant: null));
+                  },
+                  icon: const Icon(Icons.remove_circle_outline_outlined),
+                );
+
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(width: mediaQueryUtil.width(0.25), child: dropdownButton),
+                    iconButton,
+                  ],
+                );
+              } else if (snapshot.hasError) {
+                return Text('Error: ${snapshot.error}');
+              } else {
+                return Container();
+              }
+            },
+          ),
+        ),
+      ],
+    );
   }
 }

@@ -110,6 +110,10 @@
         "currentFilterLongerThan": "longer than",
        "@currentFilterLongerThan":{
           "description": ""
+       },
+        "callParticipantInfoText": "Calls have been made with this contact",
+       "@callParticipantInfoText":{
+          "description": ""
        }
 
 }

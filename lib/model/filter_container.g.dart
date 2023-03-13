@@ -25,13 +25,14 @@ class FilterContainerAdapter extends TypeAdapter<_$_FilterContainer> {
       isCallTypeMissedAccepted: fields[5] as bool,
       isCallTypeRejectedAccepted: fields[6] as bool,
       isCallTypeBlockedAccepted: fields[7] as bool,
+      callParticipant: fields[8] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, _$_FilterContainer obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.minDuration)
       ..writeByte(1)
@@ -47,7 +48,9 @@ class FilterContainerAdapter extends TypeAdapter<_$_FilterContainer> {
       ..writeByte(6)
       ..write(obj.isCallTypeRejectedAccepted)
       ..writeByte(7)
-      ..write(obj.isCallTypeBlockedAccepted);
+      ..write(obj.isCallTypeBlockedAccepted)
+      ..writeByte(8)
+      ..write(obj.callParticipant);
   }
 
   @override
@@ -70,6 +73,7 @@ _$_FilterContainer _$$_FilterContainerFromJson(Map<String, dynamic> json) => _$_
       isCallTypeMissedAccepted: json['isCallTypeMissedAccepted'] as bool,
       isCallTypeRejectedAccepted: json['isCallTypeRejectedAccepted'] as bool,
       isCallTypeBlockedAccepted: json['isCallTypeBlockedAccepted'] as bool,
+      callParticipant: json['callParticipant'] as String?,
     );
 
 Map<String, dynamic> _$$_FilterContainerToJson(_$_FilterContainer instance) => <String, dynamic>{
@@ -81,4 +85,5 @@ Map<String, dynamic> _$$_FilterContainerToJson(_$_FilterContainer instance) => <
       'isCallTypeMissedAccepted': instance.isCallTypeMissedAccepted,
       'isCallTypeRejectedAccepted': instance.isCallTypeRejectedAccepted,
       'isCallTypeBlockedAccepted': instance.isCallTypeBlockedAccepted,
+      'callParticipant': instance.callParticipant,
     };

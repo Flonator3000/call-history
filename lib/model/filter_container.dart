@@ -18,6 +18,7 @@ class FilterContainer with _$FilterContainer {
     @HiveField(5) required bool isCallTypeMissedAccepted,
     @HiveField(6) required bool isCallTypeRejectedAccepted,
     @HiveField(7) required bool isCallTypeBlockedAccepted,
+    @HiveField(8) String? callParticipant,
   }) = _FilterContainer;
 
   factory FilterContainer.fromJson(Map<String, dynamic> json) => _$FilterContainerFromJson(json);

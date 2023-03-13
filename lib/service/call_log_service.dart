@@ -7,6 +7,7 @@ class CallLogService {
       dateFrom: filterContainer.startDate != null ? filterContainer.startDate!.millisecondsSinceEpoch : null,
       dateTo: filterContainer.endDate != null ? filterContainer.endDate!.millisecondsSinceEpoch : null,
       durationFrom: filterContainer.minDuration * 60,
+      name: filterContainer.callParticipant,
     ).then((Iterable<CallLogEntry> callLogEntries) {
       List<CallLogEntry> callLogEntryList = callLogEntries.where((e) => _isCallLogEntryValidByFilters(e, filterContainer)).toList(); // Apply filters
       callLogEntryList.sort((a, b) => _compareByTimestamp(a, b)); // Sort by date

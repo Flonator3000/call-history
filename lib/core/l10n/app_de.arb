@@ -27,5 +27,6 @@
     "currentFilterCallTypes": "Typ",
     "currentFilterFrom":"von",
     "currentFilterUntil":"bis",
-    "currentFilterLongerThan":"länger als"
+    "currentFilterLongerThan":"länger als",
+    "callParticipantInfoText":"Anrufe wurden mit diesem Kontakt getätigt"
 }
