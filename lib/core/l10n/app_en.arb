@@ -114,6 +114,10 @@
         "callParticipantInfoText": "Calls have been made with this contact",
        "@callParticipantInfoText":{
           "description": ""
+       },
+        "currentFilterCallParticipant": "Contact",
+       "@currentFilterCallParticipant":{
+          "description": ""
        }
 
 }

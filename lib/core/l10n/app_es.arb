@@ -28,5 +28,6 @@
     "currentFilterFrom":"desde",
     "currentFilterUntil":"hasta",
     "currentFilterLongerThan":"más de",
-    "callParticipantInfoText":"Se han realizado llamadas con este contacto"
+    "callParticipantInfoText":"Se han realizado llamadas con este contacto",
+    "currentFilterCallParticipant":"contacto"
 }

@@ -28,5 +28,6 @@
     "currentFilterFrom":"von",
     "currentFilterUntil":"bis",
     "currentFilterLongerThan":"länger als",
-    "callParticipantInfoText":"Anrufe wurden mit diesem Kontakt getätigt"
+    "callParticipantInfoText":"Anrufe wurden mit diesem Kontakt getätigt",
+    "currentFilterCallParticipant":"Kontakt"
 }

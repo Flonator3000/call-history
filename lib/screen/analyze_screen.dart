@@ -27,14 +27,14 @@ class _AnalyzeScreen extends State<AnalyzeScreen> {
         return Column(
           children: [
             SizedBox(
-              height: mediaQueryUtil.height(0.140),
+              height: mediaQueryUtil.height(0.160),
               child: CurrentFiltersCard(filterContainer: filterProvider.filterContainer),
             ),
             SizedBox(
               height: mediaQueryUtil.height(0.02),
             ),
             SizedBox(
-              height: mediaQueryUtil.height(0.68),
+              height: mediaQueryUtil.height(0.66),
               child: FutureBuilder(
                 future: callLogService.getCallLogsFuture(filterProvider.filterContainer),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {

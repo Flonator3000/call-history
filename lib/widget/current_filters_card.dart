@@ -19,6 +19,7 @@ class CurrentFiltersCard extends StatelessWidget {
     bool isEndDateSet = filterContainer.endDate != null;
     bool isAnyCallTypeSet = filterContainer.isCallTypeIncomingAccepted || filterContainer.isCallTypeOutgoingAccepted;
     bool isMinDurationSet = filterContainer.minDuration > 0;
+    bool isCallParticipantSet = filterContainer.callParticipant != null;
 
     return Card(
       color: AppColors.secondary,
@@ -48,6 +49,16 @@ class CurrentFiltersCard extends StatelessWidget {
                   Text(filterContainer.endDate != null ? DateFormat('dd.MM.yyyy').format(filterContainer.endDate!) : ''),
                 ],
               ),
+            if (isCallParticipantSet) SizedBox(height: mediaQueryUtil.height(0.01)),
+            Row(
+              children: [
+                SizedBox(
+                  width: mediaQueryUtil.width(0.3),
+                  child: Text(appLocalizations.currentFilterCallParticipant),
+                ),
+                Text(filterContainer.callParticipant!),
+              ],
+            ),
             if (isAnyCallTypeSet) SizedBox(height: mediaQueryUtil.height(0.01)),
             Row(
               children: [
@@ -60,16 +71,21 @@ class CurrentFiltersCard extends StatelessWidget {
                 filterContainer.isCallTypeOutgoingAccepted ? Text(appLocalizations.callTypeOutgoing) : Container(),
               ],
             ),
-            if (isMinDurationSet) SizedBox(height: mediaQueryUtil.height(0.01)),
-            Row(
-              children: [
-                SizedBox(
-                  width: mediaQueryUtil.width(0.3),
-                  child: Text(appLocalizations.currentFilterLongerThan),
-                ),
-                Text('${filterContainer.minDuration}min'),
-              ],
-            )
+            if (isMinDurationSet)
+              Column(
+                children: [
+                  SizedBox(height: mediaQueryUtil.height(0.01)),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: mediaQueryUtil.width(0.3),
+                        child: Text(appLocalizations.currentFilterLongerThan),
+                      ),
+                      Text('${filterContainer.minDuration}min'),
+                    ],
+                  )
+                ],
+              )
           ],
         ),
       ),

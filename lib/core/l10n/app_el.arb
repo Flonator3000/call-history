@@ -28,5 +28,6 @@
     "currentFilterFrom":"από",
     "currentFilterUntil":"μέχρι",
     "currentFilterLongerThan":"Περισσότερο από",
-    "callParticipantInfoText":"Έχουν γίνει κλήσεις με αυτήν την επαφή"
+    "callParticipantInfoText":"Έχουν γίνει κλήσεις με αυτήν την επαφή",
+    "currentFilterCallParticipant":"επικοινωνία"
 }
