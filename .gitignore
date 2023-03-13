@@ -45,3 +45,7 @@ app.*.map.json
 
 # Configure dependencies
 **/configure_dependencies.config.dart
+
+# Generated
+*.freezed.dart
+*.g.dart
