@@ -49,28 +49,38 @@ class CurrentFiltersCard extends StatelessWidget {
                   Text(filterContainer.endDate != null ? DateFormat('dd.MM.yyyy').format(filterContainer.endDate!) : ''),
                 ],
               ),
-            if (isCallParticipantSet) SizedBox(height: mediaQueryUtil.height(0.01)),
-            Row(
-              children: [
-                SizedBox(
-                  width: mediaQueryUtil.width(0.3),
-                  child: Text(appLocalizations.currentFilterCallParticipant),
-                ),
-                Text(filterContainer.callParticipant!),
-              ],
-            ),
-            if (isAnyCallTypeSet) SizedBox(height: mediaQueryUtil.height(0.01)),
-            Row(
-              children: [
-                SizedBox(
-                  width: mediaQueryUtil.width(0.3),
-                  child: Text(appLocalizations.currentFilterCallTypes),
-                ),
-                filterContainer.isCallTypeIncomingAccepted ? Text(appLocalizations.callTypeIncoming) : Container(),
-                filterContainer.isCallTypeIncomingAccepted && filterContainer.isCallTypeOutgoingAccepted ? const Text('; ') : Container(),
-                filterContainer.isCallTypeOutgoingAccepted ? Text(appLocalizations.callTypeOutgoing) : Container(),
-              ],
-            ),
+            if (isCallParticipantSet)
+              Column(
+                children: [
+                  SizedBox(height: mediaQueryUtil.height(0.01)),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: mediaQueryUtil.width(0.3),
+                        child: Text(appLocalizations.currentFilterCallParticipant),
+                      ),
+                      Text(filterContainer.callParticipant!),
+                    ],
+                  ),
+                ],
+              ),
+            if (isAnyCallTypeSet)
+              Column(
+                children: [
+                  SizedBox(height: mediaQueryUtil.height(0.01)),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: mediaQueryUtil.width(0.3),
+                        child: Text(appLocalizations.currentFilterCallTypes),
+                      ),
+                      filterContainer.isCallTypeIncomingAccepted ? Text(appLocalizations.callTypeIncoming) : Container(),
+                      filterContainer.isCallTypeIncomingAccepted && filterContainer.isCallTypeOutgoingAccepted ? const Text('; ') : Container(),
+                      filterContainer.isCallTypeOutgoingAccepted ? Text(appLocalizations.callTypeOutgoing) : Container(),
+                    ],
+                  ),
+                ],
+              ),
             if (isMinDurationSet)
               Column(
                 children: [
