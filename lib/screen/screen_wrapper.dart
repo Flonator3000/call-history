@@ -43,32 +43,32 @@ class _ScreenWrapperState extends State<ScreenWrapper> {
 
     return Scaffold(
       appBar: _buildAppBar(currentBottomNavigationIndex, appLocalizations, mediaQueryUtil),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentBottomNavigationIndex,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.white70,
-        onTap: (index) => setState(() {
-          currentBottomNavigationIndex = index;
-        }),
-        backgroundColor: AppColors.primary,
-        items: [
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.list),
-            label: _getScreenNameByBottomNavigationIndex(0, appLocalizations),
-          ),
-          BottomNavigationBarItem(icon: const Icon(Icons.trending_up), label: _getScreenNameByBottomNavigationIndex(1, appLocalizations)),
-          BottomNavigationBarItem(icon: const Icon(Icons.download), label: _getScreenNameByBottomNavigationIndex(2, appLocalizations)),
-        ],
-      ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   currentIndex: currentBottomNavigationIndex,
+      //   selectedItemColor: Colors.white,
+      //   unselectedItemColor: Colors.white70,
+      //   onTap: (index) => setState(() {
+      //     currentBottomNavigationIndex = index;
+      //   }),
+      //   backgroundColor: AppColors.primary,
+      //   items: [
+      //     BottomNavigationBarItem(
+      //       icon: const Icon(Icons.list),
+      //       label: _getScreenNameByBottomNavigationIndex(0, appLocalizations),
+      //     ),
+      //     BottomNavigationBarItem(icon: const Icon(Icons.trending_up), label: _getScreenNameByBottomNavigationIndex(1, appLocalizations)),
+      //     BottomNavigationBarItem(icon: const Icon(Icons.download), label: _getScreenNameByBottomNavigationIndex(2, appLocalizations)),
+      //   ],
+      // ),
       body: Padding(
-        padding: EdgeInsets.only(
-          left: mediaQueryUtil.width(0.025),
-          right: mediaQueryUtil.width(0.025),
-          top: mediaQueryUtil.height(0.015),
-          bottom: mediaQueryUtil.height(0.015),
-        ),
-        child: screens[currentBottomNavigationIndex],
-      ),
+          padding: EdgeInsets.only(
+            left: mediaQueryUtil.width(0.025),
+            right: mediaQueryUtil.width(0.025),
+            top: mediaQueryUtil.height(0.015),
+            bottom: mediaQueryUtil.height(0.015),
+          ),
+          child: const HistoryScreen() //screens[currentBottomNavigationIndex],
+          ),
     );
   }
 
