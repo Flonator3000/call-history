@@ -3,11 +3,17 @@ import 'package:call_log/call_log.dart';
 
 class CallLogService {
   Future<List<CallLogEntry>> getCallLogsFuture(FilterContainer filterContainer) {
+    var callParticipant = filterContainer.callParticipant;
+    // TODO find better solution...
+    if (callParticipant == 'Unknown' || callParticipant == 'Unbekannt' || callParticipant == 'غير معروف' || callParticipant == 'Άγνωστο' || callParticipant == 'Inconnu' || callParticipant == 'desconocido') {
+      callParticipant = null;
+    }
+
     return CallLog.query(
       dateFrom: filterContainer.startDate != null ? filterContainer.startDate!.millisecondsSinceEpoch : null,
       dateTo: filterContainer.endDate != null ? filterContainer.endDate!.millisecondsSinceEpoch : null,
       durationFrom: filterContainer.minDuration * 60,
-      name: filterContainer.callParticipant,
+      name: callParticipant,
     ).then((Iterable<CallLogEntry> callLogEntries) {
       List<CallLogEntry> callLogEntryList = callLogEntries.where((e) => _isCallLogEntryValidByFilters(e, filterContainer)).toList(); // Apply filters
       callLogEntryList.sort((a, b) => _compareByTimestamp(a, b)); // Sort by date
