@@ -1,5 +1,6 @@
 import 'package:call_history/model/filter_container.dart';
 import 'package:call_log/call_log.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class CallLogService {
   Future<List<CallLogEntry>> getCallLogsFuture(FilterContainer filterContainer) {
@@ -18,7 +19,10 @@ class CallLogService {
       List<CallLogEntry> callLogEntryList = callLogEntries.where((e) => _isCallLogEntryValidByFilters(e, filterContainer)).toList(); // Apply filters
       callLogEntryList.sort((a, b) => _compareByTimestamp(a, b)); // Sort by date
       return callLogEntryList;
-    }).catchError((error) => []); // TODO handle error
+    }).catchError((error) {
+      openAppSettings();
+      return [];
+    }); // TODO handle error
   }
 
   /// This additional filter method is needed, because the CallLogs.query method does not provide all filter possibilities.
