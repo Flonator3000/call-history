@@ -43,6 +43,7 @@ dependencies:
   json_annotation: ^4.7.0
   json_serializable: ^6.5.4
   showcaseview: 2.0.0
+  permission_handler: ^10.2.0
 
 
   # The following adds the Cupertino Icons font to your application.
